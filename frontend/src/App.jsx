@@ -4,7 +4,7 @@ function App() {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <h1 className="my-3 text-4xl font-medium text-slate-700">New project is Coming here...</h1>
+      <h1 className="my-3 text-4xl font-medium text-slate-700 hover:text-green-700 cursor-pointer">New project is Coming here...</h1>
     </div>
   )
 }
