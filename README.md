@@ -1,1 +1,1 @@
-# music-blogs
+# sharing-ideas-blogs
