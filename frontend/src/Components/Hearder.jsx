@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Hearder() {
   return (
-    <div className="px-32  bg-slate-200 p-2 w-full">
+    <div className="px-32  p-2 w-full">
        <div className="flex justify-between items-center flex-wrap">
        <Link to="/">
            <div className="flex items-center cursor-pointer gap-2">
@@ -24,15 +24,15 @@ export default function Hearder() {
             <ul className="flex gap-3 items-center">
 
              <Link to="/">
-             <li>Home</li>
+             <li className="hover:font-semibold">Home</li>
              </Link>
 
             <Link to="/singin">
-            <li>Log In</li>
+            <li className="hover:font-semibold">Log In</li>
             </Link>
 
             <Link to="/about">
-            <li>About</li>
+            <li className="hover:font-semibold">About</li>
             </Link>
             </ul>
            </div>

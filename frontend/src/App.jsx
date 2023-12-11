@@ -1,4 +1,5 @@
 import Hearder from './Components/Hearder'
+import About from './Pages/About'
 import Home from './Pages/Home'
 import SignIn from './Pages/SignIn'
 import './index.css'
@@ -13,6 +14,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/singin" element={<SignIn />} />
+      <Route path="/about" element={<About />} />
     </Routes> 
     </BrowserRouter>
     </>
