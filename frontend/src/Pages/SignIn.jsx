@@ -1,6 +1,7 @@
 import { TbWorldShare } from "react-icons/tb";
 import pageImg from "../Img/cheerful.png";
-import { TextField ,Button} from '@mui/material';
+import { TextField ,Button , Tooltip} from '@mui/material';
+import {Link} from 'react-router-dom'
 
 
 
@@ -22,15 +23,25 @@ export default function SignIn() {
           </div>
         </div>
 
+        {/* Second side in downloading now  */}
+         
         <div className="secondDiv w-full">
           
-          <form action="" className="mt-48 w-full flex flex-col  items-center gap-3">
+          <Link to='/signup'>
+          <div className="mt-5 flex justify-end pr-5">
+          <Tooltip title="Click here to create an account" arrow placement='left'>
+            <Button variant="contained">Sing up</Button>
+            </Tooltip>
+          </div>
+          </Link>
+
+          <form action="" className="mt-44 w-full flex flex-col  items-center gap-3">
            <div className="flex pr-80 uppercase text-xl font-bold">
-           <h1 className="">login here</h1>
+           <h1 className="">Sing in here</h1>
            </div>
           <TextField  label="set your email" className="w-2/3" variant='outlined' type='text'/>
           <TextField  label="set your password" helperText="don't share your password" className="w-2/3" variant='outlined' type='password'/>
-          <Button variant="contained">Login now..</Button>
+          <Button variant="contained">Sing In now..</Button>
           </form>
         </div>
         </div>

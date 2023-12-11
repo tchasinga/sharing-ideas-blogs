@@ -28,7 +28,7 @@ export default function Hearder() {
              </Link>
 
             <Link to="/singin">
-            <li className="hover:font-semibold">Log In</li>
+            <li className="hover:font-semibold">Sing In</li>
             </Link>
 
             <Link to="/about">

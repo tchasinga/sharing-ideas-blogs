@@ -4,6 +4,7 @@ import Home from './Pages/Home'
 import SignIn from './Pages/SignIn'
 import './index.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import SignUp from './Pages/SignUp'
 
 function App() {
 
@@ -15,6 +16,8 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/singin" element={<SignIn />} />
       <Route path="/about" element={<About />} />
+      <Route path='/signup' element={<SignUp/>}/>
+      <Route path="*" element={<h1>404 not found</h1>} />
     </Routes> 
     </BrowserRouter>
     </>
