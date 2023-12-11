@@ -1,11 +1,21 @@
+import Hearder from './Components/Hearder'
+import Home from './Pages/Home'
+import SignIn from './Pages/SignIn'
 import './index.css'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
 
   return (
-    <div className="max-w-6xl mx-auto">
-      <h1 className="my-3 text-4xl font-medium text-slate-700 hover:text-green-700 cursor-pointer">New project is Coming here...</h1>
-    </div>
+    <>
+    <BrowserRouter>
+     <Hearder />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/singin" element={<SignIn />} />
+    </Routes> 
+    </BrowserRouter>
+    </>
   )
 }
 
