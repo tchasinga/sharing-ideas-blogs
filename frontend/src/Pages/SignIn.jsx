@@ -7,6 +7,10 @@ import {Link} from 'react-router-dom'
 
 
 export default function SignIn() {
+
+
+
+  
   return (
     <div className="bg-blue-100  mainBody">
        <div className="newproductgrid max-w-7xl mx-auto rounded-3xl">
@@ -39,9 +43,9 @@ export default function SignIn() {
            <div className="flex pr-80 uppercase text-xl font-bold">
            <h1 className="">Sing in here</h1>
            </div>
-          <TextField  label="set your email" className="w-2/3" variant='outlined' type='text'/>
-          <TextField  label="set your password" helperText="don't share your password" className="w-2/3" variant='outlined' type='password'/>
-          <Button variant="contained">Sing In now..</Button>
+          <TextField  label="set your email" className="w-2/3" id="email" variant='outlined' type='email'/>
+          <TextField  label="set your password" id="password" helperText="don't share your password" className="w-2/3" variant='outlined' type='password'/>
+          <Button type="submit" variant="contained">Sing In now..</Button>
           </form>
         </div>
         </div>
