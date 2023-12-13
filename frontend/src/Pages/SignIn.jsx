@@ -5,6 +5,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {signInStart,singInSuccess,signInFailure} from '../redux/user/userSlice.js'
 import { useState, } from 'react';
+import Welcom from '../Tasks/Welcom.jsx'
 
 
 
@@ -13,6 +14,7 @@ export default function SignIn() {
    
  const [formData, setFormData] = useState({})
  const {loading , error} = useSelector(state => state.user)
+ const [showSuccess, setShowSuccess] = useState(false); // New state for success popup
  const dispatch = useDispatch()
  const navigate = useNavigate()
 
@@ -37,7 +39,15 @@ export default function SignIn() {
         return
        }
         dispatch(singInSuccess(data))
-        navigate('/')
+         // Show the Success component
+      setShowSuccess(true);
+
+      // Set a timeout to hide the Success component after 3 seconds
+      setTimeout(() => {
+        setShowSuccess(false);
+        // Navigate to '/signin' after hiding the Success component
+        navigate('/');
+      }, 5000);
     } catch (error) {
       dispatch(signInFailure(error.message || "Failed to sign in. Please try again."))
     }
@@ -80,6 +90,7 @@ export default function SignIn() {
           <TextField  label="set your password" id="password" onChange={handleChange} helperText="don't share your password" className="w-2/3" variant='outlined' type='password'/>
           <Button type="submit" variant="contained" disabled={loading}>{loading ? 'loading...' : 'Sing-in'}</Button>
           </form>
+          {showSuccess && <Welcom />} {/* Show success popup */}
         </div>
         {error && <p className='text-red-500 text-center mt-3'>{error}</p>}
         </div>
