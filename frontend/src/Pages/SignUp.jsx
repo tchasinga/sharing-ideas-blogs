@@ -3,46 +3,55 @@ import pageImg from "../Img/cheerful.png";
 import { TextField ,Button , Tooltip} from '@mui/material';
 import {Link, useNavigate} from 'react-router-dom'
 import { useState } from "react";
+import Success from "../Tasks/Success";
 
 
 export default function SignUp() {
-
-  const [formData, setFormData] = useState({})
-  const [ error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  const [formData, setFormData] = useState({});
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false); // New state for success popup
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({...formData, [e.target.id]: e.target.value})
- // Fix the console log here
+    setFormData({ ...formData, [e.target.id]: e.target.value });
   }
 
   const handlerSubmit = async (e) => {
-    e.preventDefault()
-   try {
-      setLoading(true)
+    e.preventDefault();
+    try {
+      setLoading(true);
       const res = await fetch('http://localhost:5000/api/auth/signup', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
-      })
-      const data = await res.json()
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
       if (data.success === false) {
-        setLoading(false)
-        setError(data.message)
+        setLoading(false);
+        setError(data.message);
         return;
       }
-      setLoading(false)
-      setError(null)
-      navigate('/signin')
-      } catch (error) {
-        setLoading(false)
-        console.log(error)
-        setError(error.message)
-      }
+      setLoading(false);
+      setError(null);
+
+      // Show the Success component
+      setShowSuccess(true);
+
+      // Set a timeout to hide the Success component after 3 seconds
+      setTimeout(() => {
+        setShowSuccess(false);
+        // Navigate to '/signin' after hiding the Success component
+        navigate('/signin');
+      }, 3000);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      setError(error.message);
     }
+  }
 
     return (
       <div className="bg-blue-100  mainBody">
@@ -81,6 +90,7 @@ export default function SignUp() {
             <TextField  label="set your password" required helperText="don't share your password" id='password' onChange={handleChange} className="w-2/3" variant='outlined' type='password'/>
             <Button type="submit" variant="contained">{loading ? 'loading...' : 'Sign up'}</Button>
             </form>
+            {showSuccess && <Success />} {/* Show success popup */}
              <div className="flex gap-2 mt-3 text-xs">
               {error && <p className="text-red-500">{error}</p>}
              </div>

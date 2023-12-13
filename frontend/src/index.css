@@ -1,46 +1,69 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 @import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-    scroll-behavior: smooth;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
 }
 
-.mainBody{
+.mainBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    width: 100%;
-    overflow: none;
-    
+    margin: 0;
 }
 
 .newproductgrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    transform: translate(0%, 10%);
-  }
-
-
-.firstDiv{
-    background: #7694ee;
-    border-bottom-left-radius: 3%;
-    border-top-left-radius: 3%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
-.secondDiv{
-    background:white;
-    border-bottom-right-radius: 3%;
-    border-top-right-radius: 3%;
+.firstDiv {
+  background: #7694ee;
+  border-bottom-left-radius: 3%;
+  border-top-left-radius: 3%;
 }
 
-.getBorder img{
-   border-radius: 70%;
-    width: 100%;
-    height: 100%;
+.secondDiv {
+  background: white;
+  border-bottom-right-radius: 3%;
+  border-top-right-radius: 3%;
 }
 
+.getBorder img {
+  border-radius: 70%;
+  width: 100%;
+  height: 100%;
+}
 
+/* Add a new CSS file or add these styles to your existing CSS */
+/* Center the Success component */
+.Success {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Optionally add a semi-transparent background */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 9999; /* Ensure it's above other elements */
+}
+
+/* Optional: Add styles to customize the appearance of the animation */
+.Success .lottie-container {
+  width: 100px; /* Adjust the width as needed */
+  height: 100px; /* Adjust the height as needed */
+  margin: 0 auto;
+}
