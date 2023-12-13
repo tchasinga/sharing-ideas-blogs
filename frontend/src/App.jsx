@@ -5,6 +5,8 @@ import SignIn from './Pages/SignIn'
 import './index.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import SignUp from './Pages/SignUp'
+import PrivateRoom from './Components/PrivateRoom'
+import Profile from './Pages/Profile'
 
 function App() {
 
@@ -18,6 +20,10 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path='/signup' element={<SignUp/>}/>
       <Route path="*" element={<h1>404 not found</h1>} />
+
+      <Route element={<PrivateRoom/>}>
+        <Route path="/profile" element={<Profile/>} />
+      </Route>
     </Routes> 
     </BrowserRouter>
     </>

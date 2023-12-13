@@ -35,7 +35,7 @@ export default function Hearder() {
             <li className="hover:font-semibold">About</li>
             </Link>
 
-            <Link to="/signin">
+            <Link to="/profile">
             {currentUser ? (
             <li>
              <img src={currentUser.user.avatar} alt="avatar" className="w-7 h-7 rounded-full object-cover" />
