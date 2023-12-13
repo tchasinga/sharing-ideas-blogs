@@ -1,6 +1,7 @@
 const User = require('../models/user.model.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 // Adding a singup for user to the app...
 const signup = async (req, res, next) =>{
@@ -29,4 +30,40 @@ const signup = async (req, res, next) =>{
     }
 }
 
-module.exports = {signup}
+// Adding a signin  for user to the web application...
+
+const signin = async (req, res, next) => {
+    const { email, password } = req.body;
+  
+    try {
+      const validUser = await User.findOne({ email });
+  
+      if (!validUser) {
+        const error = new Error("User not found");
+        error.status = 404;
+        return next(error);
+      }
+  
+      const validPassword = await bcrypt.compare(password, validUser.password);
+  
+      if (!validPassword) {
+        const error = new Error("Password is not correct");
+        error.status = 401;
+        return next(error);
+      }
+  
+      const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+      const { password: pass, ...userDetails } = validUser._doc;
+  
+      res.cookie('access_token', token, { httpOnly: true, sameSite: true, secure: true }).status(200).json({
+        token,
+        user: userDetails
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+  
+
+
+module.exports = {signup, signin}

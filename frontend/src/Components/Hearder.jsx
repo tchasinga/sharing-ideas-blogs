@@ -1,8 +1,12 @@
 import { MdScreenShare } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Hearder() {
+  
+  const currentUser = useSelector((state) => state.user && state.user.user.currentUser);
+
   return (
     <div className="px-32  p-2 w-full">
        <div className="flex justify-between items-center flex-wrap">
@@ -27,12 +31,18 @@ export default function Hearder() {
              <li className="hover:font-semibold">Home</li>
              </Link>
 
-            <Link to="/signin">
-            <li className="hover:font-semibold">Sing In</li>
-            </Link>
-
             <Link to="/about">
             <li className="hover:font-semibold">About</li>
+            </Link>
+
+            <Link to="/signin">
+            {currentUser ? (
+            <li>
+             <img src={currentUser.user.avatar} alt="avatar" className="w-7 h-7 rounded-full object-cover" />
+            </li>
+            ) : (
+              <li>Sign in</li>
+            )}
             </Link>
             </ul>
            </div>
