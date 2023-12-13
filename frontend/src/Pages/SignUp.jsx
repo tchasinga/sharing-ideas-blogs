@@ -7,92 +7,85 @@ import { useState } from "react";
 
 export default function SignUp() {
 
-
-  const [formData , setFormData] = useState({})
+  const [formData, setFormData] = useState({})
+  const [ error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-  const [loading , setLoading] = useState(false)
-  const [error , setError] = useState(false)
-
-
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(false);
-  
-    try {
+    setFormData({...formData, [e.target.id]: e.target.value})
+ // Fix the console log here
+  }
+
+  const handlerSubmit = async (e) => {
+    e.preventDefault()
+   try {
+      setLoading(true)
       const res = await fetch('http://localhost:5000/api/auth/signup', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData),
-      });
-  
-      const data = await res.json();
-  
+        body: JSON.stringify(formData)
+      })
+      const data = await res.json()
       if (data.success === false) {
-        setError(data.error);
-        setLoading(false);
+        setLoading(false)
+        setError(data.message)
         return;
       }
-      setLoading(false);
-      navigate('/signin');
-    } catch (error) {
-      setError(error.message); 
-      setLoading(false);
+      setLoading(false)
+      setError(null)
+      navigate('/signin')
+      } catch (error) {
+        setLoading(false)
+        console.log(error)
+        setError(error.message)
+      }
     }
-  };
-  
-
 
     return (
-        <div className="bg-blue-100  mainBody">
-           <div className="newproductgrid max-w-7xl mx-auto rounded-3xl">
-            <div className="firstDiv p-3">
-              <div className="flex items-center gap-1 pl-3">
-              <TbWorldShare className="text-2xl text-white"/>
-              <h2 className="text-sm text-indigo-50 font-medium">Welcom in our blogs sharing</h2>
-              </div>
-              <div className="flex justify-center getBorder items-center">
-                <img className="pl-20 pt-14 w-full" src={pageImg} alt="" />
-              </div>
-              <div className="flex justify-center items-center mt-32">
-                <p className="text-xs text-white">Copyright @2023 My creation All good deserved</p>
-              </div>
+      <div className="bg-blue-100  mainBody">
+         <div className="newproductgrid max-w-7xl mx-auto rounded-3xl">
+          <div className="firstDiv p-3">
+            <div className="flex items-center gap-1 pl-3">
+            <TbWorldShare className="text-2xl text-white"/>
+            <h2 className="text-sm text-indigo-50 font-medium">Welcom in our blogs sharing</h2>
             </div>
-    
-            {/* Second side in downloading now  */}
-             
-            <div className="secondDiv w-full">
-              
-              <Link to='/singin'>
-              <div className="mt-5 flex justify-end pr-5">
-              <Tooltip title="Click here to login now" arrow placement='left'>
-                <Button variant="contained">Sing in</Button>
-                </Tooltip>
-              </div>
-              </Link>
-    
-              <form onSubmit={handleSubmit} className="mt-40 w-full flex flex-col  items-center gap-3">
-               <div className="flex pr-24 uppercase text-xl font-bold">
-               <h1 className="">create your account here</h1>
-               </div>
-              <TextField  label="set your username" required className="w-2/3" onChange={handleChange} variant='outlined' type='text'/>
-              <TextField  label="set your email" required className="w-2/3" onChange={handleChange} variant='outlined' type='text'/>
-              <TextField  label="set your password" required helperText="don't share your password" onChange={handleChange} className="w-2/3" variant='outlined' type='password'/>
-              <Button variant="contained">{loading ? 'loading...' : 'Sign up'}</Button>
-              </form>
-               <div className="flex gap-2 mt-3 text-xs">
-                {error && <p className="text-red-500">{error}</p>}
-               </div>
+            <div className="flex justify-center getBorder items-center">
+              <img className="pl-20 pt-14 w-full" src={pageImg} alt="" />
             </div>
+            <div className="flex justify-center items-center mt-32">
+              <p className="text-xs text-white">Copyright @2023 My creation All good deserved</p>
             </div>
-        </div>
-      )
-    }
-    
+          </div>
+  
+          {/* Second side in downloading now  */}
+           
+          <div className="secondDiv w-full">
+            
+            <Link to='/signin'>
+            <div className="mt-5 flex justify-end pr-5">
+            <Tooltip title="Click here to login now" arrow placement='left'>
+              <Button variant="contained">Sing in</Button>
+              </Tooltip>
+            </div>
+            </Link>
+  
+            <form onSubmit={handlerSubmit} className="mt-40 w-full flex flex-col  items-center gap-3">
+             <div className="flex pr-24 uppercase text-xl font-bold">
+             <h1 className="">create your account here</h1>
+             </div>
+            <TextField  label="set your username" required className="w-2/3" id='username' onChange={handleChange} variant='outlined' type='text'/>
+            <TextField  label="set your email" required className="w-2/3" id='email' onChange={handleChange} variant='outlined' type='text'/>
+            <TextField  label="set your password" required helperText="don't share your password" id='password' onChange={handleChange} className="w-2/3" variant='outlined' type='password'/>
+            <Button type="submit" variant="contained">{loading ? 'loading...' : 'Sign up'}</Button>
+            </form>
+             <div className="flex gap-2 mt-3 text-xs">
+              {error && <p className="text-red-500">{error}</p>}
+             </div>
+          </div>
+          </div>
+      </div>
+    )
+  }

@@ -5,13 +5,12 @@ const jwt = require('jsonwebtoken');
 // Adding a singup for user to the app...
 const signup = async (req, res, next) =>{
     try {
-        const {username, email, phoneNumber, password} = req.body;
+        const {username, email, password} = req.body;
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
         const newUser = new User({
             username,
             email,
-            phoneNumber,
             password: hashedPassword,
         })
         const result = await newUser.save();

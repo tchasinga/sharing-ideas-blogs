@@ -14,7 +14,7 @@ function App() {
      <Hearder />
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/singin" element={<SignIn />} />
+      <Route path="/signin" element={<SignIn />} />
       <Route path="/about" element={<About />} />
       <Route path='/signup' element={<SignUp/>}/>
       <Route path="*" element={<h1>404 not found</h1>} />
