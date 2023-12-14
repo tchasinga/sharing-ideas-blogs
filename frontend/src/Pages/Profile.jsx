@@ -2,6 +2,7 @@ import {useSelector} from 'react-redux'
 import { CiEdit } from "react-icons/ci";
 import {Tooltip} from '@mui/material';
 import { MdDelete } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 
 export default function Profile() {
@@ -19,6 +20,7 @@ const currentUser = useSelector((state) => state.user && state.user.user.current
               <div className="flex flex-col gap-2">
                <h2 className='bg-blue-800 px-5  p-2 rounded-full font-normal text-sm text-white'>Connect to linkedIn</h2>
 
+             <Link to='/editprofile'>
              <Tooltip title="click here to edit your profile" arrow placement="bottom">
              <ul className="flex items-center gap-2 text-gray-500 ">
                 <li className='cursor-pointer'>
@@ -29,6 +31,7 @@ const currentUser = useSelector((state) => state.user && state.user.user.current
                 </li>
                </ul>
               </Tooltip>
+              </Link>
 
               </div>
             </div>
@@ -60,12 +63,7 @@ const currentUser = useSelector((state) => state.user && state.user.user.current
                    <div className="truncate">
                     <h1 className='text-sm font-light'>Github</h1>
                     <h2 className='text-sm bg-gray-200 p-2 pr-10 font-medium truncate'>Github account</h2>
-                  </div>      
-
-                   <div className="">
-                    <h1 className='text-sm font-light'>Name</h1>
-                    <h2 className='text-sm bg-gray-200 p-2 pr-10  font-medium'>{currentUser.user.username}</h2>
-                  </div>           
+                  </div>     
                </div>
            </div>
         </div>

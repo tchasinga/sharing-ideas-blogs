@@ -7,6 +7,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import SignUp from './Pages/SignUp'
 import PrivateRoom from './Components/PrivateRoom'
 import Profile from './Pages/Profile'
+import Updateprofile from './Pages/Updateprofile'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
 
       <Route element={<PrivateRoom/>}>
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/editprofile" element={<Updateprofile/>} />
       </Route>
     </Routes> 
     </BrowserRouter>

@@ -64,6 +64,15 @@ const signin = async (req, res, next) => {
     }
   };
   
+  // Adding a singout for user to the web application...
+  const singout = (req, res, next) => {
+   try {
+    res.clearCookie('access_token').json({
+      message: "Signout successfully"
+    });
+   } catch (error) {
+    next(error);
+   }
+  };
 
-
-module.exports = {signup, signin}
+module.exports = {signup, signin , singout}
