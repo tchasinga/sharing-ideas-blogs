@@ -5,7 +5,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {signInStart,singInSuccess,signInFailure} from '../redux/user/userSlice.js'
 import { useState, } from 'react';
-import Welcom from '../Tasks/Welcom.jsx'
+import Success from '../Tasks/Success.jsx'
 
 
 
@@ -90,7 +90,7 @@ export default function SignIn() {
           <TextField  label="set your password" id="password" onChange={handleChange} helperText="don't share your password" className="w-2/3" variant='outlined' type='password'/>
           <Button type="submit" variant="contained" disabled={loading}>{loading ? 'loading...' : 'Sing-in'}</Button>
           </form>
-          {showSuccess && <Welcom />} {/* Show success popup */}
+          {showSuccess && <Success />} {/* Show success popup */}
         </div>
         {error && <p className='text-red-500 text-center mt-3'>{error}</p>}
         </div>
