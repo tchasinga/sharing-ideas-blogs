@@ -1,12 +1,58 @@
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux';
 import { CiEdit } from "react-icons/ci";
 import {Tooltip} from '@mui/material';
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import {signOutUserFailure, signOutUserStart, signOutUserSuccess , deleteUserStart,deleteUserSuccess,deleteUserFailure, } from '../redux/user/userSlice.js'
+
 
 
 export default function Profile() {
+  const dispatch = useDispatch();
 const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
+
+
+// Adding singout functionality (this function are used to singout the user...)
+const handlerSingout = async() => {
+  try {
+    dispatch(signOutUserStart());
+    const res = await fetch('http://localhost:5000/api/auth/signout')
+    const data = await res.json();
+
+    if(data.success === false) {
+      dispatch(signOutUserFailure(data.message));
+      return;
+    }
+    dispatch(signOutUserSuccess(data));
+  } catch (error) {
+    console.error(error);
+    dispatch(signOutUserFailure(error.message));
+  }
+}
+
+// Adding delete functionality (this function are used to delete the user...)
+const handlerdeleleAccount = async() => {
+  try {
+    const  res = await fetch(`http://localhost:5000/api/user/delete/${currentUser.user._id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(currentUser),
+    })
+    const data = await res.json();
+    if(data.success === true) {
+      dispatch(deleteUserStart(data.message));
+      return;
+    }
+    dispatch(deleteUserSuccess(data));
+    deleteUserSuccess(true);
+  } catch (error) {
+    console.error(error);
+    dispatch(deleteUserFailure(error.message)); 
+  }
+}
+
 
 
 
@@ -42,9 +88,9 @@ const currentUser = useSelector((state) => state.user && state.user.user.current
               <div className="mb-5 flex justify-between">
             <h1 className='text-2xl flex font-light '>My Profile</h1>
                <div className="flex gap-5 text-sm items-center">
-                <h1 className='text-green-800'>Singout</h1>
+                <h1 onClick={handlerSingout} className='text-green-800 cursor-pointer'>Singout</h1>
                 <Tooltip title="click here to delete your account" arrow placement="bottom">
-                <button className="bg-red-500 p-2 rounded-full text-black"><MdDelete /></button>
+                <button onClick={handlerdeleleAccount} className="bg-red-500 p-2 rounded-full text-black"><MdDelete /></button>
                 </Tooltip>
                </div>
               </div>

@@ -3,6 +3,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const authUserRouter = require('./router/auth.route.js');
+const userRoute = require('./router/user.route.js');
 
 // Applying app express
 const app = express();
@@ -39,4 +40,5 @@ mongoose.connect(urlmongoDB)
 
 // Adding APIs routes to the app...
 app.use('/api/auth', authUserRouter);
+app.use('/api/user', userRoute);
 
