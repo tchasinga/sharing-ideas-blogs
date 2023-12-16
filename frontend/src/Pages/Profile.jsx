@@ -57,9 +57,9 @@ const handlerdeleleAccount = async() => {
 
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 border">
+    <div className="max-w-4xl mx-auto mt-10 ">
         <div className="flex w-full p-2 gap-9">
-        <div className="flex flex-col gap-0 border ">
+        <div className="flex flex-col gap-0  ">
           <div className="">
             <div className="flex flex-col">
               <img src={currentUser.user.avatar} alt="avatar" className="w-20  rounded-full object-cover" />
