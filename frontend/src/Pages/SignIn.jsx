@@ -13,7 +13,7 @@ import Success from '../Tasks/Success.jsx'
 export default function SignIn() {
    
  const [formData, setFormData] = useState({})
- const {loading , error} = useSelector(state => state.user)
+ const {loading , error} = useSelector(state =>  state.user && state.user.user)
  const [showSuccess, setShowSuccess] = useState(false); // New state for success popup
  const dispatch = useDispatch()
  const navigate = useNavigate()
