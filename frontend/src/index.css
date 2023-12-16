@@ -73,3 +73,8 @@
   height: 40%;
   margin: 0 auto;
 }
+
+.animate__tada{
+  animation-delay: 3s;
+  animation-iteration-count: infinite;
+}
