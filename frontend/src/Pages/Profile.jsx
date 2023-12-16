@@ -62,7 +62,11 @@ const handlerdeleleAccount = async() => {
         <div className="flex flex-col gap-0  ">
           <div className="">
             <div className="flex flex-col">
-              <img src={currentUser.user.avatar} alt="avatar"  className="w-24 h-24 rounded-full object-cover cursor-pointer self-center my-2 " />
+            <Link to='/editprofile'>
+            <Tooltip title="click here to edit your profile" arrow placement="left">
+               <img src={currentUser.user.avatar} alt="avatar"  className="w-24 h-24 rounded-full object-cover cursor-pointer self-center my-2 " />
+              </Tooltip>
+              </Link>
               <div className="flex flex-col gap-2">
                <h2 className='bg-blue-800 px-5  p-2 rounded-full font-normal text-sm text-white'>Connect to linkedIn</h2>
 
