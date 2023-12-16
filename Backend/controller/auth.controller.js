@@ -24,7 +24,7 @@ const signup = async (req, res, next) =>{
         next(error);
         res.status(400).json({
             success: false,
-            message: "User created failed",
+            message: "Failed to create a user in your system",
             data: result,
         })
     }
