@@ -20,6 +20,10 @@ const sharingSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    dateinstert:{
+        type: Date,
+        default: Date.now
+    },
     typeofideas: {
         type: String,
         required: true,
