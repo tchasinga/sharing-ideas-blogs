@@ -15,7 +15,7 @@ export default function Createsharingideas() {
         <h1 className="text-2xl font-light">Create a new Idea heres</h1>
       </div>
       {/* Form side will be design with grid... system*/}
-      <form className="mt-3 gridsystem">
+      <form className="mt-11 gridsystem">
         <div className=' text-black '>
           <TextField type="text" variant='outlined' label="Enter your name here" name="name" id="name" className="border p-2 w-full rounded-md"/>
         </div>
