@@ -1,5 +1,6 @@
 import {useSelector} from 'react-redux'
 import { MdWavingHand } from "react-icons/md";
+import {TextField} from '@mui/material'
 
 export default function Createsharingideas() {
   const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
@@ -15,10 +16,18 @@ export default function Createsharingideas() {
       </div>
       {/* Form side will be design with grid... system*/}
       <form className="mt-3 gridsystem">
-        <div className='bg-blue-950 text-white p-2'>1</div>
-        <div className='bg-slate-500 text-white p-2'>2</div>
-        <div className='bg-yellow-950 text-white p-2'>3</div>
-        <div className='bg-green-950 text-white p-2'>4</div>
+        <div className=' text-black '>
+          <TextField type="text" variant='outlined' label="Enter your name here" name="name" id="name" className="border p-2 w-full rounded-md"/>
+        </div>
+        <div className='text-black'>
+          <TextField type="tel"  variant='outlined' label="Enter your phone number here" name="phonenumber" id="phonenumber" className="border p-2 w-full rounded-md"/>
+        </div>
+        <div className='text-black'>
+          <TextField type="text" variant='outlined' label="Enter your email here" name="email" id="email" className="border p-2 w-full rounded-md"/>
+        </div>
+        <div className='text-black'>
+          <TextField type="text" variant='outlined' label="Enter your idea here" name="description" id="description" className="border p-2 w-full rounded-md"/>
+        </div>
         <div className='bg-red-950 text-white p-2'>5</div>
         <div className='bg-blue-200 text-white p-2'>6</div>
         <div className='bg-blue-500 text-white p-2'>7</div>
