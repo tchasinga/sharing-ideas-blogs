@@ -78,3 +78,14 @@
   animation-delay: 3s;
   animation-iteration-count: infinite;
 }
+
+.gridsystem{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 5px;
+  width: 100%;
+}
+
+.gridsystem div:nth-child(4){
+  grid-column: span 3;
+}
