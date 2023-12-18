@@ -95,7 +95,7 @@ export default function Createsharingideas() {
         },
         body: JSON.stringify({
           ...formData,
-          userRef: currentUser.user._id,
+          userRef: currentUser._id || currentUser.user._id || currentUser.user.currentUser._id,
         }),
       });
   
@@ -105,10 +105,9 @@ export default function Createsharingideas() {
   
       if (data.success === true) {
         setError(data.message);
-        // Add a console log here to check the data received from the server.
-        console.log('Registration Successful:', data._id);
-        // Navigate only if registration is successful
-        navigate(`/DetaislSharing/${data._id}`);
+        console.log('Registration Successful:', data)
+        // Navigate inside the .then block
+        navigate(`/sharingdeteals/${data.data._id}`);
         return;
       }
     } catch (error) {
@@ -116,6 +115,8 @@ export default function Createsharingideas() {
       setLoading(false);
     }
   };
+  
+  
   
 
   return (
