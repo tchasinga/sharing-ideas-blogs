@@ -8,6 +8,7 @@ import SignUp from './Pages/SignUp'
 import PrivateRoom from './Components/PrivateRoom'
 import Profile from './Pages/Profile'
 import Updateprofile from './Pages/Updateprofile'
+import Createsharingideas from './Pages/Createsharingideas'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       <Route element={<PrivateRoom/>}>
         <Route path="/profile" element={<Profile/>} />
         <Route path="/editprofile" element={<Updateprofile/>} />
+        <Route path="/createSharing" element={<Createsharingideas />} />
       </Route>
     </Routes> 
     </BrowserRouter>

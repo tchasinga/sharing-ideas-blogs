@@ -4,7 +4,7 @@ import {Tooltip} from '@mui/material';
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import {signOutUserFailure, signOutUserStart, signOutUserSuccess , deleteUserStart,deleteUserSuccess,deleteUserFailure, } from '../redux/user/userSlice.js'
-
+import { MdCreateNewFolder } from "react-icons/md";
 
 
 export default function Profile() {
@@ -99,7 +99,7 @@ const handlerdeleleAccount = async() => {
                </div>
               </div>
               
-              <div className="flex flex-wrap gap-5 items-center">
+              <div className="flex flex-wrap gap-5 items-center border-b-2 pb-3">
                   <div className="">
                     <h1 className='text-sm font-light'>Name</h1>
                     <h2 className='text-sm bg-gray-200 p-2 pr-10  font-medium'>{currentUser.user.username}</h2>
@@ -115,6 +115,13 @@ const handlerdeleleAccount = async() => {
                     <h2 className='text-sm bg-gray-200 p-2 pr-10 font-medium truncate'>Github account</h2>
                   </div>     
                </div>
+
+               <Link to='/createSharing'>
+               <div className='flex items-center justify-center cursor-pointer bg-green-300 p-3 gap-1 mt-3 rounded-2xl w-1/2'>
+                <MdCreateNewFolder className='text-3xl'/>
+                 <h1 className='cursor-pointer'>Create an idea</h1> 
+               </div>
+              </Link>
            </div>
         </div>
     </div>
