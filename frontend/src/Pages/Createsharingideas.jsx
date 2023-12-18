@@ -25,12 +25,17 @@ export default function Createsharingideas() {
         <div className='text-black'>
           <TextField type="text" variant='outlined' label="Enter your email here" name="email" id="email" className="border p-2 w-full rounded-md"/>
         </div>
-        <div className='text-black'>
-          <TextField type="text" variant='outlined' label="Enter your idea here" name="description" id="description" className="border p-2 w-full rounded-md"/>
+        <div className='text-black input-group mt-3'>
+          <textarea type="text"  required name='description' id='description' autoComplete='off' className='input w-full'/>
+          <label className='user-label'>Write the full details of your idea</label>
         </div>
-        <div className='bg-red-950 text-white p-2'>5</div>
-        <div className='bg-blue-200 text-white p-2'>6</div>
-        <div className='bg-blue-500 text-white p-2'>7</div>
+        <div className='text-black'>
+          <TextField type="text" variant='outlined'  label="Enter your public function" helperText="Your public function ex : programmer etc.... " name="publicrole" id="publicrole" className="border p-2 w-full rounded-md"/>
+        </div>
+        <div className='text-black'>
+          <TextField type="datetime-local" variant='outlined' name="dateinstert" id="dateinstert" className="border p-2 w-full rounded-md"/>
+        </div>
+        <div className='text-black'>7</div>
       </form>
     </main>
   )
