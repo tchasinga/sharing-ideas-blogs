@@ -5,7 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import {signOutUserFailure, signOutUserStart, signOutUserSuccess , deleteUserStart,deleteUserSuccess,deleteUserFailure, } from '../redux/user/userSlice.js'
 import { MdCreateNewFolder } from "react-icons/md";
-
+import { BiShowAlt } from "react-icons/bi";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -116,12 +116,18 @@ const handlerdeleleAccount = async() => {
                   </div>     
                </div>
 
+               <div className="w-full flex gap-3">
                <Link to='/createSharing'>
-               <div className='flex items-center justify-center cursor-pointer bg-green-300 p-3 gap-1 mt-3 rounded-2xl w-1/2'>
+               <div className='flex items-center justify-center cursor-pointer newpadding bg-green-300 p-3 gap-1 mt-3 rounded-2xl'>
                 <MdCreateNewFolder className='text-3xl'/>
                  <h1 className='cursor-pointer'>Create an idea</h1> 
                </div>
               </Link>
+              <div className='flex items-center  cursor-pointer bg-yellow-100 hover:bg-green-950 hover:text-white p-3 gap-1 mt-3 mypading rounded-2xl'>
+                <BiShowAlt className='text-3xl'/>
+                 <h1 className='cursor-pointer'>Create an idea</h1> 
+               </div>
+               </div>
            </div>
         </div>
     </div>
