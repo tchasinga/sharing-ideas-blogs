@@ -28,7 +28,7 @@ export default function Createsharingideas() {
 
   // Adding image to the database
   const handlerImageSubmit = () => {
-    if(files.length > 0 && files.length + formData.imageUrls.length < 8){
+    if(files.length > 0 && files.length + formData.imageUrls.length < 10){
         setUploading(true)
         setImageUploadError(false)
         const promise = []
@@ -48,7 +48,7 @@ export default function Createsharingideas() {
         });
        
     }else{
-        setImageUploadError("You can upload max 7 images")
+        setImageUploadError("You can upload max 10 images maximum (2 mb per image)")
         setUploading(false)
     }
    }
