@@ -6,10 +6,14 @@ import { Link } from 'react-router-dom';
 import {signOutUserFailure, signOutUserStart, signOutUserSuccess , deleteUserStart,deleteUserSuccess,deleteUserFailure, } from '../redux/user/userSlice.js'
 import { MdCreateNewFolder } from "react-icons/md";
 import { BiShowAlt } from "react-icons/bi";
+import { useState } from 'react';
 
 export default function Profile() {
   const dispatch = useDispatch();
 const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
+const [showSharingiErrors, setshowSharingErrors] = useState(false);
+const [userSharing, setUserSharings] = useState([]);
+
 
 
 // Adding singout functionality (this function are used to singout the user...)
@@ -50,6 +54,24 @@ const handlerdeleleAccount = async() => {
   } catch (error) {
     console.error(error);
     dispatch(deleteUserFailure(error.message)); 
+  }
+}
+// Showing all data which was created by the specic user
+const handlerShowSharing = async() => {
+  try {
+    setshowSharingErrors(false);
+    const res = await fetch(`http://localhost:5000/api/user/getsharing/${currentUser.user._id}`);
+    const data = await res.json();
+    if(data.success === true) {
+      setshowSharingErrors(true);
+      return;
+    }
+    setUserSharings(data);
+    setshowSharingErrors(false);
+    console.log(data);
+    
+  } catch (error) {
+    showSharingiErrors(true);
   }
 }
 
@@ -123,9 +145,9 @@ const handlerdeleleAccount = async() => {
                  <h1 className='cursor-pointer'>Create an idea</h1> 
                </div>
               </Link>
-              <div className='flex items-center  cursor-pointer bg-yellow-100 hover:bg-green-950 hover:text-white p-3 gap-1 mt-3 mypading rounded-2xl'>
+              <div onClick={handlerShowSharing} className='flex items-center  cursor-pointer bg-yellow-100 hover:bg-green-950 hover:text-white p-3 gap-1 mt-3 mypading rounded-2xl'>
                 <BiShowAlt className='text-3xl'/>
-                 <h1 className='cursor-pointer'>Create an idea</h1> 
+                 <h1 className='cursor-pointer'>Show all your ideas</h1> 
                </div>
                </div>
            </div>

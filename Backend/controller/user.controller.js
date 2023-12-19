@@ -1,5 +1,6 @@
 const User = require("../models/user.model.js");
 const bycrypt = require("bcrypt");
+const Sharing = require("../models/sharinglist.model.js");
 
 // Delete user from database system...
 const deleteUser = async (req, res, next) => {
@@ -43,5 +44,16 @@ const updateUser = async (req, res, next) => {
   }
 };
 
+// Get user listing data created by the user with his specified id... (this will display in the profile pages of user)
+const getUserSharing = async (req, res, next) => {
+  try {
+    const sharingmyides = await Sharing.find({ userRef: req.params.id });
+    res.status(200).json(sharingmyides);
+  } catch (error) {
+    // Handle errors
+    next(error);
+  }
+};
+
 // Module expeort from the database system...
-module.exports = { deleteUser, updateUser };
+module.exports = { deleteUser, updateUser, getUserSharing };
