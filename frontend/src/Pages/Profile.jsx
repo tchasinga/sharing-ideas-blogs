@@ -13,6 +13,7 @@ export default function Profile() {
 const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
 const [showSharingiErrors, setshowSharingErrors] = useState(false);
 const [userSharing, setUserSharings] = useState([]);
+// const [setFormData] = useState({});
 
 
 
@@ -63,6 +64,7 @@ const handlerShowSharing = async() => {
     const res = await fetch(`http://localhost:5000/api/user/getsharing/${currentUser.user._id}`);
     const data = await res.json();
     if(data.success === true) {
+
       setshowSharingErrors(true);
       return;
     }
@@ -70,10 +72,29 @@ const handlerShowSharing = async() => {
     setshowSharingErrors(false);
     console.log(data);
     
+    
   } catch (error) {
     showSharingiErrors(true);
   }
 }
+
+// Deleting the Sharing Information
+const handlerListingDelete = async(sharingId) => {
+  try {
+    const res = await fetch(`http://localhost:5000/api/sharing/deleteideas/${sharingId}`, {
+      method: 'DELETE',
+    })
+    const data = await res.json();
+    if(data.success === true) {
+      console.log(data.success);
+      return;
+    }
+    setUserSharings((prev) => prev.filter((item) => item._id !== sharingId));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 
 
 
@@ -152,6 +173,28 @@ const handlerShowSharing = async() => {
                </div>
            </div>
         </div>
+
+        {/* get all  the user listings */}
+
+        {userSharing && userSharing.map((sharing) => {
+      return (
+         <div key={sharing._id} className="border rounded-lg p-3 flex justify-between items-center gap-3">
+           <Link  to={`/sharingdeteals/${sharing._id}`}>
+         <img className="h-16 w-16 object-contain rounded" src={sharing.imageUrls[0]} alt="listImg" />
+       </Link>
+       <Link className="text-slate-700 text-sm font-medium truncate flex-1" to={`/sharingdeteals/${sharing._id}`}>
+         <p className="">{sharing.name}</p>
+       </Link>
+
+          <div className="flex flex-col items-center">
+            <button onClick={()=>handlerListingDelete(sharing._id)} className="text-red-700 uppercase">Delete</button>
+           <Link to={`/updating-listing/${sharing._id}`}>
+           <button className="text-blue-700 uppercase">Edit...</button>
+           </Link>
+          </div>
+       </div>
+      );
+    })}
     </div>
   )
 }

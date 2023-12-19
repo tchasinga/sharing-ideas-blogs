@@ -22,19 +22,11 @@ const createSharing = async (req, res, next) => {
 const deleteSharing = async (req, res, next) => {
     try {
         const sharing = await Sharing.findByIdAndDelete(req.params.id);
-
-        if (sharing === null) {
-            return res.status(404).json({ message: "sharing was not found" });
+        if (!sharing) {
+            return res.status(404).send("Listing not found");
         }
-
-        if (sharing.user.toString() !== req.user.id) {
-            return res.status(401).json({ message: "You are not authorized" });
-        }
-        return res.status(200).json({ message: "sharing deleted successfully", deletedListing: sharing });
+        return res.status(200).json({ message: "sharing deleted successfully",sharing});
     } catch (error) {
-        if (error.name === 'ValidationError') {
-            return res.status(400).json({ error: error.message });
-        }
         next(error);
     }
 };
