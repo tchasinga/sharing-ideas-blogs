@@ -44,7 +44,7 @@ const updateUser = async (req, res, next) => {
   }
 };
 
-// Get user listing data created by the user with his specified id... (this will display in the profile pages of user)
+// Get user listing of data created by the user with his specified id... (this will display in the profile pages of user)
 const getUserSharing = async (req, res, next) => {
   try {
     const sharingmyides = await Sharing.find({ userRef: req.params.id });
@@ -55,5 +55,19 @@ const getUserSharing = async (req, res, next) => {
   }
 };
 
+
+// Get a user CONTACT information (WHEN USER WANNA COMMUNICATE WITH OWNER)
+const getUserConctact = async (req, res, next) =>{
+  // TODO
+try {
+  let  user = await User.findById(req.params.id);
+  const {password : pass, ...rest} = user._doc;
+  res.status(200).json(rest);
+} catch (error) {
+  next(error);
+}
+}
+
+
 // Module expeort from the database system...
-module.exports = { deleteUser, updateUser, getUserSharing };
+module.exports = { deleteUser, updateUser, getUserSharing , getUserConctact};

@@ -8,6 +8,7 @@ import "swiper/css/bundle";
 import SwiperCore from "swiper";
 import { format } from 'date-fns';
 import {FaShare, FaPhoneAlt , FaRegCalendarAlt} from 'react-icons/fa';
+import Contact from "./Contact";
 
 export default function Sharingdeteals() {
   SwiperCore.use([Navigation]);
@@ -16,7 +17,7 @@ export default function Sharingdeteals() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
-  // const [contact, setContact] = useState(false);
+  const [contact, setContact] = useState(false);
 
   useEffect(() => {
     const fetchSharing = async () => {
@@ -48,6 +49,10 @@ export default function Sharingdeteals() {
     setTimeout(() => {
       setCopied(false);
     }, 2000);
+  }
+
+  const handleContactButtonClick = () => {
+    setContact(true);
   }
 
   return (
@@ -114,6 +119,13 @@ export default function Sharingdeteals() {
           <div className="text-slate-950 font-light text-xl">
             <h1>{sharing.description}</h1>
             </div>
+        <button
+          onClick={handleContactButtonClick}
+          className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3 w-1/2'>
+         Get in touch
+        </button>
+        {/* Addign condition rending in the page */}
+        {contact && <Contact sharing={sharing}/>}
           </div>
         </div>
       )}
