@@ -178,7 +178,7 @@ const handlerListingDelete = async(sharingId) => {
 
         {userSharing && userSharing.map((sharing) => {
       return (
-         <div key={sharing._id} className="border rounded-lg p-3 flex justify-between items-center gap-3">
+         <div key={sharing._id} className="border rounded-lg p-3 flex justify-between items-center gap-3 mb-2">
            <Link  to={`/sharingdeteals/${sharing._id}`}>
          <img className="h-16 w-16 object-contain rounded" src={sharing.imageUrls[0]} alt="listImg" />
        </Link>

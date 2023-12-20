@@ -157,9 +157,9 @@ export default function Createsharingideas() {
           <TextField type="datetime-local"  onChange={handleChange} value={formData.dateinstert}  variant='outlined' name="dateinstert" id="dateinstert" className="border p-2 w-full rounded-md"/>
         </div>
         <div className='text-black'>
-          <select name="typeofideas" id="typeofideas" value={formData.typeofideas}  onChange={handleChange} className="p-2 w-full rounded-md">
+          <select name="typeofideas" id="typeofideas" value={formData.typeofideas} onChange={handleChange} className="p-2 w-full rounded-md">
             <option disabled>Select your country</option>
-            <option value="Technology">Technology</option>
+            <option value="TypeofIdeas">Choose your kind of idea here {currentUser.user.username}</option>
             <option value="Travel">Travel</option>
             <option value="HealthandWellness">Health and Wellness</option>
             <option value="Finance">Finance</option>
@@ -183,6 +183,7 @@ export default function Createsharingideas() {
             <option value="Photography">Photography</option>
             <option value="Film">Film</option>
             <option value="Games">Games</option>
+            <option value="Technology">Technology</option>
             <option value="Design">Design</option>
             <option value="Comics">Comics</option>
             <option value="Dance">Dance</option>
