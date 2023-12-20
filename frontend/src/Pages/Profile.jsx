@@ -188,7 +188,7 @@ const handlerListingDelete = async(sharingId) => {
 
           <div className="flex flex-col items-center">
             <button onClick={()=>handlerListingDelete(sharing._id)} className="text-red-700 uppercase">Delete</button>
-           <Link to={`/updating-listing/${sharing._id}`}>
+           <Link to={`/updating-sharing/${sharing._id}`}>
            <button className="text-blue-700 uppercase">Edit...</button>
            </Link>
           </div>

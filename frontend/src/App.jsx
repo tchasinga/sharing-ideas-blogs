@@ -10,6 +10,7 @@ import Profile from './Pages/Profile'
 import Updateprofile from './Pages/Updateprofile'
 import Createsharingideas from './Pages/Createsharingideas'
 import Sharingdeteals from './Pages/Sharingdeteals'
+import UpdateSharing from './Pages/UpdateSharing'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/profile" element={<Profile/>} />
         <Route path="/editprofile" element={<Updateprofile/>} />
         <Route path="/createSharing" element={<Createsharingideas />} />
+        <Route path="/updating-sharing/:sharingId" element={<UpdateSharing />} />
       </Route>
     </Routes> 
     </BrowserRouter>

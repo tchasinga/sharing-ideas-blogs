@@ -31,6 +31,16 @@ const deleteSharing = async (req, res, next) => {
     }
 };
 
+// Adding Public get API for all  user (it will be used in the frontend specially in page details.. by id )
+const getSharingIdesList = async (req, res, next) => {
+    try {
+        const sharing = await Sharing.findById(req.params.id);
+        return res.status(200).json({ message: "sharing get successfully",sharing});
+    } catch (error) {
+        next(error);
+    }
+};
+
 
 // Export the method
-module.exports = { createSharing , deleteSharing};
+module.exports = { createSharing , deleteSharing , getSharingIdesList};
