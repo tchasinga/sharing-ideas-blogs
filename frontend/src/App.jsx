@@ -22,13 +22,13 @@ function App() {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/about" element={<About />} />
       <Route path='/signup' element={<SignUp/>}/>
-      {/* <Route path="*" element={<h1>404 not found</h1>} /> */}
+      <Route path="/sharingdeteals/:sharingId" element={<Sharingdeteals />} />
+      <Route path="*" element={<h1>404 not found</h1>} />
 
       <Route element={<PrivateRoom/>}>
         <Route path="/profile" element={<Profile/>} />
         <Route path="/editprofile" element={<Updateprofile/>} />
         <Route path="/createSharing" element={<Createsharingideas />} />
-        <Route path="/sharingdeteals/:sharingId" element={<Sharingdeteals />} />
       </Route>
     </Routes> 
     </BrowserRouter>

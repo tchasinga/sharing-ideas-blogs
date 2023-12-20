@@ -88,7 +88,7 @@ export default function Createsharingideas() {
       setLoading(true);
       setError(false);
   
-      const res = await fetch(`http://localhost:5000/api/sharing/sharingideas`, {
+      const res = await fetch(`http://localhost:5000/api/sharing/creatignsharingideas`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

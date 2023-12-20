@@ -39,7 +39,6 @@ const sharingSchema = new mongoose.Schema({
     },
     userRef: { 
         type: String,
-        required: true,
       },
 },
 {timestamps: true});
