@@ -12,7 +12,7 @@ export default function Messagebugs() {
         speed="1.3"
         color="black"
       ></l-infinity>
-    </div>
+   </div>
   );
 }
 // Default values shown

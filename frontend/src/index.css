@@ -131,3 +131,14 @@
  .newpadding{
     padding: 8px 34px;
  }
+
+ .LoadingpageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh; /* Set the container height to full viewport height */
+}
+
+.getbackground{
+  background: linear-gradient (to  right, rgb(0, 0, 0 / 0.5), rgb(0, 0, 0 / 0));
+}
