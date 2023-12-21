@@ -183,7 +183,7 @@ const handlerListingDelete = async(sharingId) => {
          <img className="h-16 w-16 object-contain rounded" src={sharing.imageUrls[0]} alt="listImg" />
        </Link>
        <Link className="text-slate-700 text-sm font-medium truncate flex-1" to={`/sharingdeteals/${sharing._id}`}>
-         <p className="">{sharing.name}</p>
+         <p className="">{sharing.publicrole}</p>
        </Link>
 
           <div className="flex flex-col items-center">
