@@ -3,6 +3,7 @@ import Load from "../Animations/Load";
 import Messagebugs from "../Animations/Messagebugs";
 import SharingCard from "./SharingCard";
 
+
 export default function Search() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -31,6 +32,7 @@ export default function Search() {
         setSharing(data);
         setLoading(false);
         setError(false);
+
       } catch (error) {
         setError(true);
         setLoading(false);
