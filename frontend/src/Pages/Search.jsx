@@ -10,39 +10,46 @@ export default function Search() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    const searchTerm = urlParams.get('searchTerm');
+    const searchTerm = urlParams.get("searchTerm");
 
     const fetchingListings = async () => {
-        try {
-          setLoading(true);
-          const searchQuery = urlParams.toString(searchTerm);
-          const res = await fetch(`http://localhost:5000/api/sharing/getallsharingideas?${searchQuery}`);
-          const data = await res.json();
-      
-      
-          if (data.success === false) {
-            setError(true);
-            setLoading(false);
-            return;
-          }
-      
-          console.log(data);
-          setSharing(data.data || []);
-          setLoading(false);
-          setError(false);
-        } catch (error) {
+      try {
+        setLoading(true);
+        const searchQuery = urlParams.toString(searchTerm);
+        const res = await fetch(
+          `http://localhost:5000/api/sharing/getallsharingideas?${searchQuery}`
+        );
+        const data = await res.json();
+
+        if (data.success === false) {
           setError(true);
-          console.log(error);
           setLoading(false);
+          return;
         }
-      };
-      fetchingListings();
-      
-       }, [location.search])
+        
+        console.log(data);
+        setSharing(data);
+        setLoading(false);
+        setError(false);
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+      }
+    };
+    fetchingListings();
+  }, [location.search]);
   return (
     <div>
-      {loading && <h1 className='LoadingpageContainer'><Load/></h1>}
-      {error && <h1 className='LoadingpageContainer'><Messagebugs/></h1>}
+      {loading && (
+        <h1 className="LoadingpageContainer">
+          <Load />
+        </h1>
+      )}
+      {error && (
+        <h1 className="LoadingpageContainer">
+          <Messagebugs />
+        </h1>
+      )}
       <div className="">
         {/* {!loading && sharing.length === 0 && (
           <div className="flex flex-col gap-7 LoadingpageContainer">
@@ -51,9 +58,9 @@ export default function Search() {
         )} */}
       </div>
       <div className="mt-7 justify-center flex gap-5 flex-wrap w-full">
-        {sharing.map((list) => (
-          <SharingCard key={list._id} listing={list} />
-        ))}
+      {sharing.map((list) => (
+              <SharingCard key={list._id} listing={list} />
+            ))}
       </div>
     </div>
   );

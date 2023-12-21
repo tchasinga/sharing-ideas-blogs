@@ -63,36 +63,34 @@ const updateSharing = async (req, res, next) => {
 const getAlldataFromSharingList = async (req, res, next) => {
   try {
     const limit = parseInt(req.query.limit) || 10;
-    const startIndex = parseInt(req.query.startIndex) || 1;
+    const startIndex = parseInt(req.query.startIndex) || 0;
+
+    let publicrole = req.query.publicrole;
+    if (publicrole === undefined || publicrole === "all") {
+      publicrole = { $exists: true };
+    }
 
     const searchTerm = req.query.searchTerm || "";
-    const sort = req.query.sort || "createdAt"; // Assuming a default sorting field like "_id"
+    const sort = req.query.sort || "dateinsert";
+    const order = req.query.order || "desc";
 
-    const mySharingList = await Sharing.find({
-      name: { $regex: searchTerm, $options: "i" },
-      // Assuming the following fields are variables defined elsewhere
-      phonenumber: req.query.phonenumber,
-      email: req.query.email,
-      publicrole: req.query.publicrole,
-      dateinsert: req.query.dateinsert,
-      typeofideas: req.query.typeofideas,
+    const sharedData = await Sharing.find({
+      $or: [
+        { name: { $regex: searchTerm, $options: "i" } },
+        { publicrole: { $regex: searchTerm, $options: "i" } },
+      ],
     })
-    .sort({ [sort]: 1 }) // You can change 1 to -1 for descending order if needed
-    .skip((startIndex - 1) * limit)
-    .limit(limit)
-    .exec();
+      .sort({ [sort]: order })
+      .limit(limit)
+      .skip(startIndex)
+      .exec();
 
-    // Add code to handle the result, send response, etc.
-    res.json({ mySharingList });
-
+    return res.status(200).json(sharedData);
   } catch (error) {
-    // Handle errors appropriately
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error in your backend side' });
     next(error);
   }
 };
-  
+
 
 // Export the method
 module.exports = {
