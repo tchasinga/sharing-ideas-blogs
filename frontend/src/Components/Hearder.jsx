@@ -33,7 +33,8 @@ export default function Header() {
           return;
         }
 
-        setSharingIdeas(data);
+        setSharingIdeas(data); // adjust the property name based on your API response
+
         setLoading(false);
         setError(false);
       } catch (error) {
@@ -50,7 +51,7 @@ export default function Header() {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set('searchTerm', searchTerm);
     const searchQuery = urlParams.toString();
-    navigate(`/search?${encodeURIComponent(searchQuery)}`);
+    navigate(`/search?${(searchQuery)}`);
   };
 
   useEffect(() => {
