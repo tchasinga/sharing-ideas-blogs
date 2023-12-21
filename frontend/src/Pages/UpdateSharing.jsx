@@ -79,58 +79,64 @@ export default function UpdateSharing() {
 
   // Adding idea to the database
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-  }
-
-  //  Adding Handler Submit to submit the form data to the database of MongoDB and Firebase Storage
-  const handlerSubmitForm = async (e) => {
-    try {
-      e.preventDefault();
-      setLoading(true);
-      setError(false);
-  
-      const res = await fetch(`http://localhost:5000/api/sharing/updatesharingideas/${params.sharingId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          userRef: currentUser._id || currentUser.user._id || currentUser.user.currentUser._id,
-          dateinstert: new Date(formData.dateinstert).toISOString(),
-        }),
-      });
-  
-      const data = await res.json();
-  
-      setLoading(false);
-  
-      if (data.success === true) {
-        setError(data.message);
-        console.log('Data updated successfully Successful:', data)
-        // Navigate inside the .then block
-        navigate(`/sharingdeteals/${data.data._id}`);
-        return;
-      }
-    } catch (error) {
-      setError(error.message);
-      setLoading(false);
+    if (e.target.id === "dateinstert") {
+      // Format the date to "yyyy-MM-dd"
+      setFormData({ ...formData, [e.target.id]: new Date(e.target.value).toISOString().split('T')[0] });
+    } else {
+      setFormData({ ...formData, [e.target.id]: e.target.value });
     }
-  };
-  
-   useEffect(() => {
-    const fetchSharingIdeas = async () => {
-      try {
-        const res = await fetch(`http://localhost:5000/api/sharing/getsharingideas/${params.sharingId}`);
-        const data = await res.json();
-        setFormData(data.data || data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchSharingIdeas();
-   })
+  }
+  //  Adding Handler Submit to submit the form data to the database of MongoDB and Firebase Storage
+  const  handlerSubmitForm = async (e) =>{
+    try {
+      //  Off session storage to the database
+        e.preventDefault()
+        setLoading(true)
+        setError(false)
+     
+        const res = await fetch(`http://localhost:5000/api/sharing/updatesharingideas/${params.sharingId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              ...formData,
+              userRef: currentUser._id || currentUser.user._id || currentUser.user.currentUser._id,
+            }),
+          });
+        const data = await res.json()
+        setLoading(false)
+        if(data.success === true){
+            setError(data.message)
+            setLoading(false)
+            return;
+        }
+        navigate(`/sharingdeteals/${data._id}`)
+    } catch (error) {
+    setError(error.message)
+    setLoading(false)
+    }
+   }
 
+   //  Creating a function for handling all pre updated code in the database
+   useEffect(() => {
+    const fetchingList = async () => {
+        const sharingId = params.sharingId;
+        const res = await fetch(`http://localhost:5000/api/sharing/getsharingideas/${sharingId}`);
+        const data = await res.json();
+        setFormData(data)
+    };
+
+    fetchingList();
+}, []); 
+
+
+const handlerRemoveimg = (index) =>{
+  setFormData({
+      ...formData,
+      imageUrls: formData.imageUrls.filter((_, i) => i !== index),
+  });
+}
   return (
     <main className="max-w-7xl mx-auto">
      <div className="flex items-center gap-3 w-full mt-10">
@@ -166,7 +172,7 @@ export default function UpdateSharing() {
           <TextField type="text" variant='outlined'  onChange={handleChange} value={formData.publicrole}  label="Enter your public function" helperText="Your public function ex : programmer etc.... " name="publicrole" id="publicrole" className="border p-2 w-full rounded-md"/>
         </div>
         <div className='text-black'>
-          <TextField type="datetime-local"  onChange={handleChange} value={formData.dateinstert}  variant='outlined' name="dateinstert" id="dateinstert" className="border p-2 w-full rounded-md"/>
+          <TextField type="date" defaultValue={formData.dateinstert}  onChange={handleChange} value={formData.dateinstert}  variant='outlined' name="dateinstert" id="dateinstert" className="border p-2 w-full rounded-md"/>
         </div>
         <div className='text-black'>
           <select name="typeofideas" id="typeofideas" value={formData.typeofideas} onChange={handleChange} className="p-2 w-full rounded-md">
@@ -178,6 +184,7 @@ export default function UpdateSharing() {
             <option value="Career-and-Professional-Development">Career and Professional Development</option>
             <option value="Creativity">Creativity</option>
             <option value="Education">Education</option>
+            <option value="Programmign">Programming</option>
             <option value="Family">Family</option>
             <option value="FoodandDrink">Food and Drink</option>
             <option value="HomeandGarden">Home and Garden</option>
@@ -214,6 +221,14 @@ export default function UpdateSharing() {
             <p className='text-red-700 text-xs'>{imageUploadImageError &&  imageUploadImageError}</p>
         </div>
       </form>
+      {
+                formData.imageUrls.length > 0 && formData.imageUrls.map((url,index) =>(
+                   <div key={url}  className="flex justify-between p-3 border items-center my-3 ">
+                        <img src={url} alt="Image listing" className='w-10 h-10 object-cover rounded-lg' />
+                        <button type='button' onClick={()=> handlerRemoveimg(index)} className='text-red-700 p-2'>Delete image</button>
+                   </div>
+                ))
+            }
     </main>
   )
 }

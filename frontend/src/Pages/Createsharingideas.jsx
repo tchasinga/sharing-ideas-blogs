@@ -154,7 +154,7 @@ export default function Createsharingideas() {
           <TextField type="text" variant='outlined'  onChange={handleChange} value={formData.publicrole}  label="Enter your public function" helperText="Your public function ex : programmer etc.... " name="publicrole" id="publicrole" className="border p-2 w-full rounded-md"/>
         </div>
         <div className='text-black'>
-          <TextField type="datetime-local"  onChange={handleChange} value={formData.dateinstert}  variant='outlined' name="dateinstert" id="dateinstert" className="border p-2 w-full rounded-md"/>
+          <TextField type="date"  onChange={handleChange} value={formData.dateinstert}  variant='outlined' name="dateinstert" id="dateinstert" className="border p-2 w-full rounded-md"/>
         </div>
         <div className='text-black'>
           <select name="typeofideas" id="typeofideas" value={formData.typeofideas} onChange={handleChange} className="p-2 w-full rounded-md">
@@ -169,6 +169,7 @@ export default function Createsharingideas() {
             <option value="Family">Family</option>
             <option value="FoodandDrink">Food and Drink</option>
             <option value="HomeandGarden">Home and Garden</option>
+            <option value="Programmign">Programmign</option>
             <option value="Music">Music</option>
             <option value="Pets">Pets</option>
             <option value="SportsandFitness">Sports and Fitness</option>
