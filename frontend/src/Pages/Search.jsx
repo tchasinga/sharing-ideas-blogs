@@ -27,7 +27,7 @@ export default function Search() {
           }
       
           console.log(data);
-          setSharing(data);
+          setSharing(data.data || []);
           setLoading(false);
           setError(false);
         } catch (error) {

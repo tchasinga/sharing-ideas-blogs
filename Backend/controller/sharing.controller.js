@@ -61,36 +61,37 @@ const updateSharing = async (req, res, next) => {
 
 // Public GET request for all USER to SEARCH AND FILTER DATA FROM API PUBLIC
 const getAlldataFromSharingList = async (req, res, next) => {
-    try {
-      const limit = parseInt(req.query.limit) || 10;
-      const startIndex = parseInt(req.query.startIndex) || 1;
-  
-      const searchTerm = req.query.searchTerm || "";
-      const sort = req.query.sort || "_id"; // Assuming a default sorting field like "_id"
-  
-      const mySharingList = await Sharing.find({
-        name: { $regex: searchTerm, $options: "i" },
-        // Assuming the following fields are variables defined elsewhere
-        phonenumber: req.query.phonenumber,
-        email: req.query.email,
-        publicrole: req.query.publicrole,
-        dateinsert: req.query.dateinsert,
-        typeofideas: req.query.typeofideas,
-      })
-      .sort({ [sort]: 1 }) // You can change 1 to -1 for descending order if needed
-      .skip((startIndex - 1) * limit)
-      .limit(limit);
-  
-      // Add code to handle the result, send response, etc.
-      res.json({ mySharingList });
-  
-    } catch (error) {
-      // Handle errors appropriately
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-      next(error);
-    }
-  };
+  try {
+    const limit = parseInt(req.query.limit) || 10;
+    const startIndex = parseInt(req.query.startIndex) || 1;
+
+    const searchTerm = req.query.searchTerm || "";
+    const sort = req.query.sort || "createdAt"; // Assuming a default sorting field like "_id"
+
+    const mySharingList = await Sharing.find({
+      name: { $regex: searchTerm, $options: "i" },
+      // Assuming the following fields are variables defined elsewhere
+      phonenumber: req.query.phonenumber,
+      email: req.query.email,
+      publicrole: req.query.publicrole,
+      dateinsert: req.query.dateinsert,
+      typeofideas: req.query.typeofideas,
+    })
+    .sort({ [sort]: 1 }) // You can change 1 to -1 for descending order if needed
+    .skip((startIndex - 1) * limit)
+    .limit(limit)
+    .exec();
+
+    // Add code to handle the result, send response, etc.
+    res.json({ mySharingList });
+
+  } catch (error) {
+    // Handle errors appropriately
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error in your backend side' });
+    next(error);
+  }
+};
   
 
 // Export the method
