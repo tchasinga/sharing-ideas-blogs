@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Load from "../Animations/Load";
 import Messagebugs from "../Animations/Messagebugs";
 import SharingCard from "./SharingCard";
 
-
-export default function Search() {
+function Search() {
+  const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [sharing, setSharing] = useState([]);
@@ -27,7 +28,7 @@ export default function Search() {
           setLoading(false);
           return;
         }
-        
+
         console.log(data);
         setSharing(data);
         setLoading(false);
@@ -40,30 +41,26 @@ export default function Search() {
     };
     fetchingListings();
   }, [location.search]);
+
   return (
     <div>
       {loading && (
-        <h1 className="LoadingpageContainer">
+        <h1 className="Success">
           <Load />
         </h1>
       )}
       {error && (
-        <h1 className="LoadingpageContainer">
+        <h1 className="Success">
           <Messagebugs />
         </h1>
       )}
-      <div className="">
-        {/* {!loading && sharing.length === 0 && (
-          <div className="flex flex-col gap-7 LoadingpageContainer">
-            <h1 className="text-xs font-semibold text-slate-600">No Listing found...</h1>
-          </div>
-        )} */}
-      </div>
       <div className="mt-7 justify-center flex gap-5 flex-wrap w-full">
-      {sharing.map((list) => (
-              <SharingCard key={list._id} listing={list} />
-            ))}
+        {sharing.map((list) => (
+          <SharingCard key={list._id} listing={list} />
+        ))}
       </div>
     </div>
   );
 }
+
+export default Search;
