@@ -97,6 +97,7 @@ export default function UpdateSharing() {
         body: JSON.stringify({
           ...formData,
           userRef: currentUser._id || currentUser.user._id || currentUser.user.currentUser._id,
+          dateinstert: new Date(formData.dateinstert).toISOString(),
         }),
       });
   
@@ -122,7 +123,7 @@ export default function UpdateSharing() {
       try {
         const res = await fetch(`http://localhost:5000/api/sharing/getsharingideas/${params.sharingId}`);
         const data = await res.json();
-        setFormData(data.data);
+        setFormData(data.data || data);
       } catch (error) {
         console.log(error);
       }
