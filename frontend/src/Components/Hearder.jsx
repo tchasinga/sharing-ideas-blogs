@@ -1,40 +1,34 @@
-import { MdScreenShare } from "react-icons/md";
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
- // Assuming NewErrors is the correct component to import
+import {useSelector} from 'react-redux';
 
 export default function Header() {
-  const currentUser = useSelector((state) => state.user && state.user.user.currentUser);
+  const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
-
-   // SUBMITING A FORM TO THE SERVER TO SEACHING DATA AND FILTER THEM
-   const handlerSubmit = (e) => {
+  const handlerSubmit = (e) => {
     e.preventDefault();
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams();
     urlParams.set('searchTerm', searchTerm);
-    const seachQuery = urlParams.toString();
-    navigate(`/search?${seachQuery}`);
+    navigate(`/search?${urlParams.toString()}`);
   }
 
-  useEffect(() =>{
+  useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
-    if(searchTermFromUrl){
+    if (searchTermFromUrl) {
       setSearchTerm(searchTermFromUrl);
     }
-  }, [])
+  }, []);
 
   return (
     <div className="px-32 p-2 w-full">
       <div className="flex justify-between items-center flex-wrap">
         <Link to="/">
           <div className="flex items-center cursor-pointer gap-2">
-            <MdScreenShare className="text-3xl" />
+            <FaSearch className="text-3xl" />
             <h3 className="text-1xl font-bold cursor-pointer">Shar<span className='text-blue-400'>ing</span></h3>
           </div>
         </Link>
