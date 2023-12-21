@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Load from "../Animations/Load";
 import Messagebugs from "../Animations/Messagebugs";
+import SharingCard from "../Pages/SharingCard";
  // Assuming NewErrors is the correct component to import
 
 export default function Header() {
