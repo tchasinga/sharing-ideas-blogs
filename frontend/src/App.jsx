@@ -11,6 +11,7 @@ import Updateprofile from './Pages/Updateprofile'
 import Createsharingideas from './Pages/Createsharingideas'
 import Sharingdeteals from './Pages/Sharingdeteals'
 import UpdateSharing from './Pages/UpdateSharing'
+import NoFound from './Pages/NoFound'
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path='/signup' element={<SignUp/>}/>
       <Route path="/sharingdeteals/:sharingId" element={<Sharingdeteals />} />
-      <Route path="*" element={<h1>404 not found</h1>} />
+      <Route path="*" element={<NoFound/>} />
 
       <Route element={<PrivateRoom/>}>
         <Route path="/profile" element={<Profile/>} />
