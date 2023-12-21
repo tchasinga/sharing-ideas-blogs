@@ -42,6 +42,23 @@ const getSharingIdesList = async (req, res, next) => {
     }
 };
 
+// Adding an API Update sharing table (the user will  have an access to update his sharing table which was only created by him)
+const updateSharing = async (req, res, next) => {
+    try {
+        const sharingTableUpdated = await Sharing.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {
+                new: true,
+                runValidators: true
+            }
+        )
+        return res.status(200).json(sharingTableUpdated);
+    } catch (error) {
+        next(error);
+    }
+}
+
 
 // Export the method
-module.exports = { createSharing , deleteSharing , getSharingIdesList};
+module.exports = { createSharing , deleteSharing , getSharingIdesList, updateSharing};
