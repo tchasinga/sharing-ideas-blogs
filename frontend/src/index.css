@@ -162,6 +162,11 @@
   width: 100%;
 }
 
+.bg-slate-300{
+  background-color: #0000005e;
+  backdrop-filter: blur(10px);
+}
+
 
 
 
