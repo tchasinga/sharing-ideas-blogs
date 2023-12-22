@@ -153,8 +153,8 @@
 
 /* Add a new CSS file or add these styles to your existing CSS */
 /* Center the Success component */
-.newproductgrid {
+.newproductgriding{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  grid-gap: 5px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-gap: 10px;
 }

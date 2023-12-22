@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom';
 
 export default function SharingCard({sharinglist}) {
       return (
-        <div className='newproductgrid'>
-          
+        <div className='newproductgriding'>
+
           </div>
       );
 
