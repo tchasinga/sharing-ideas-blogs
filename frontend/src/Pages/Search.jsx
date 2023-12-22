@@ -29,7 +29,6 @@ function Search() {
           return;
         }
 
-        console.log(data);
         setSharing(data);
         setLoading(false);
         setError(false);
@@ -54,9 +53,9 @@ function Search() {
           <Messagebugs />
         </h1>
       )}
-      <div className="mt-7 justify-center flex gap-5 flex-wrap w-full">
-        {sharing.map((list) => (
-          <SharingCard key={list._id} listing={list} />
+      <div className="mt-7 max-w-6xl mx-auto">
+        {sharing.map((sharinglist) => (
+          <SharingCard key={sharinglist._id} sharinglist={sharinglist} />
         ))}
       </div>
     </div>

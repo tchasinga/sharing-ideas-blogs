@@ -150,7 +150,7 @@ const handlerRemoveimg = (index) =>{
       <form onSubmit={handlerSubmitForm} className="mt-11">
       <div className='flex justify-end mb-4'>
         <div className="flex flex-col">
-        <Button type='submit' variant='contained'>{loading ? 'Creating...' : 'Create'}</Button>
+        <Button type='submit' variant='contained'>{loading ? 'Updating...' : 'Updated'}</Button>
            {error &&<p className='text-red-700 text-xs'>{error}</p>}
         </div>
         </div>
@@ -184,7 +184,7 @@ const handlerRemoveimg = (index) =>{
             <option value="Career-and-Professional-Development">Career and Professional Development</option>
             <option value="Creativity">Creativity</option>
             <option value="Education">Education</option>
-            <option value="Programmign">Programming</option>
+            <option value="Programming">Programming</option>
             <option value="Family">Family</option>
             <option value="FoodandDrink">Food and Drink</option>
             <option value="HomeandGarden">Home and Garden</option>
