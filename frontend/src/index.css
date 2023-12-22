@@ -157,14 +157,17 @@
 
 .gridOneGeneral {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 10px;
-  width: 100%;
 }
 
 .bg-slate-300{
   background-color: #0000005e;
   backdrop-filter: blur(10px);
+}
+
+.maxWidth{
+  max-width: 300px;
 }
 
 
