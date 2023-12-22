@@ -53,7 +53,7 @@ function Search() {
           <Messagebugs />
         </h1>
       )}
-      <div className="mt-7 max-w-6xl mx-auto">
+      <div className="mt-7">
         {sharing.map((sharinglist) => (
           <SharingCard key={sharinglist._id} sharinglist={sharinglist} />
         ))}
