@@ -1,7 +1,8 @@
-import { FaSearch } from "react-icons/fa";
+import { MdScreenShare } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {useSelector} from 'react-redux';
+import {FaSearch} from 'react-icons/fa';
 
 export default function Header() {
   const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
@@ -27,8 +28,8 @@ export default function Header() {
     <div className="px-32 p-2 w-full">
       <div className="flex justify-between items-center flex-wrap">
         <Link to="/">
-          <div className="flex items-center cursor-pointer gap-2">
-            <FaSearch className="text-3xl" />
+          <div  className="flex items-center cursor-pointer gap-2">
+            <MdScreenShare className="text-3xl" />
             <h3 className="text-1xl font-bold cursor-pointer">Shar<span className='text-blue-400'>ing</span></h3>
           </div>
         </Link>

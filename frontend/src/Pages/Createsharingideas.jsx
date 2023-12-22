@@ -48,7 +48,7 @@ export default function Createsharingideas() {
         });
        
     }else{
-        setImageUploadError("You can upload max 10 images maximum (2 mb per image)")
+        setImageUploadError(`You can upload max 10 images maximum (2 mb per image) and please select at least one image to upload ${currentUser.user.username}`)
         setUploading(false)
     }
    }
