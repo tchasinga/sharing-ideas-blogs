@@ -53,11 +53,11 @@ function Search() {
           <Messagebugs />
         </h1>
       )}
-      <div className="mt-7">
+
+      {/* this part is not require to  */}
         {sharing.map((sharinglist) => (
           <SharingCard key={sharinglist._id} sharinglist={sharinglist} />
         ))}
-      </div>
     </div>
   );
 }

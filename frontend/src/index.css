@@ -155,6 +155,6 @@
 /* Center the Success component */
 .newproductgriding{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(350px , 1fr));
+  grid-gap: 5px;
 }
