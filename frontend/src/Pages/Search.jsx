@@ -32,7 +32,6 @@ function Search() {
         setSharing(data);
         setLoading(false);
         setError(false);
-
       } catch (error) {
         setError(true);
         setLoading(false);
@@ -55,8 +54,11 @@ function Search() {
       )}
 
       {/* this part is not require to  */}
-      <div className="px-10">
-      {sharing.map((sharinglist) => (
+      {sharing.length === 0 && (
+        <h1 className="Success">No sharing ideas found</h1>
+      )}
+      <div className="gridOneGeneral">
+        {sharing.map((sharinglist) => (
           <SharingCard key={sharinglist._id} sharinglist={sharinglist} />
         ))}
       </div>
