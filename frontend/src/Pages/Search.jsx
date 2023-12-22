@@ -57,9 +57,11 @@ function Search() {
       {sharing.length === 0 && (
         <h1 className="Success">No sharing ideas found</h1>
       )}
-      <div className="gridOneGeneral px-10">
+      <div className=" ">
         {sharing.map((sharinglist) => (
+          <div className="gridOneGeneral" key={sharinglist._id}>     
           <SharingCard key={sharinglist._id} sharinglist={sharinglist} />
+          </div>
         ))}
       </div>
     </div>
