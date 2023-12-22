@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 export default function SharingCard({sharinglist}) {
       return (
-        <div className='px-10'>
+        <div className=' flex px-10'>
 
           <div className="newproductgriding">
             <div className="gridOneGeneral">
