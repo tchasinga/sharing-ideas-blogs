@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function SharingCard({ sharinglist }) {
   return (
     <div className="flex flex-col justify-center  items-center p-3 bg-gray-100 rounded-lg">
-      <div className="flex flex-col justify-between relative items-center">
+      <div className="getbording flex justify-between relative items-center">
         <img src={sharinglist.imageUrls[0]} className="h-[250px] w-full relative object-cover rounded-2xl" alt="" />
       </div>
     </div>
