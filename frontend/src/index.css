@@ -162,11 +162,9 @@
 .gridOneGeneral{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px , 1fr));
-  background-color: #1a73e8;
+  gap: 10px;
 }
 
-.gridOneGeneral div:nth-child(1){
-  background-color: #030a13;
-}
+
 
 

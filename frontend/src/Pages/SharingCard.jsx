@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 export default function SharingCard({ sharinglist }) {
   return (
     <>
-      <div className="">
-        div
+      <div className="p-3 bg-slate-100">
+        <div className="">
+          <img src={sharinglist.imageUrls} alt="" />
+        </div>
       </div>
     </>
   );
