@@ -4,16 +4,8 @@ import {Link} from 'react-router-dom';
 
 export default function SharingCard({sharinglist}) {
       return (
-        <div className=' flex px-10'>
-
-          <div className="newproductgriding">
-            <div className="gridOneGeneral">
-               <div className="">
-                   <img src={sharinglist.imageUrls} alt="" />
-               </div>
-            </div>
-          </div>
-
+        <div className='gridOneGeneral'>
+          
         </div>
       );
 
