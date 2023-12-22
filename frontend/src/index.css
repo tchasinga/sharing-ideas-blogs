@@ -157,17 +157,11 @@
 
 .gridOneGeneral {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  border: 2px black solid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 10px;
+  width: 100%;
 }
 
-.getboding img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 0; /* Add this line */
-  padding: 0; /* Add this line */
-}
 
 
 
