@@ -9,22 +9,29 @@ export default function Home() {
   const currentUser = useSelector((state) => state.user && state.user.user.currentUser);
   const [sharing , setSharing] = useState([]);
   const [loading, setLoading] = useState(false)
+  const [sharingError, setsharingError] = useState(false) // Corrected this line
   
   useEffect(() => {
     const fetchingSharing = async () => {
       try {
         setLoading(true)
-          const res = await fetch('http://localhost:5000/api/sharing/getallsharingideas');
+        const res = await fetch('http://localhost:5000/api/sharing/getallsharingideas');
         const data = await res.json()
-        setSharing(data)
-        setLoading(false)
+        if (data.success === false) {
+          setsharingError(true);
+          setLoading(false);
+          return;
+        }
+        setSharing(data);
+        setLoading(false);
+        setsharingError(false);
       } catch (error) {
-        // Handle error
+        setsharingError(true);
+        setLoading(false);
       }
-    };
+    }
     fetchingSharing();
   }, [])
-  
 
 
   return (
@@ -57,7 +64,7 @@ export default function Home() {
       </div>
      )}
        {loading && <h1 className='LoadingpageContainer'><Load/></h1>}
-       {sharing.length === 0 && <h1 className='LoadingpageContainer'><Messagebugs/></h1>}
+       {sharingError && <h1 className='LoadingpageContainer'><Messagebugs/></h1>}
         <div className="flex flex-wrap gap-4 justify-center max-w-full myhomeget mx-auto">
           {sharing.map((sharinglist) => (
             <div className="" key={sharinglist._id}>     
