@@ -15,7 +15,7 @@ export default function Home() {
     const fetchingSharing = async () => {
       try {
         setLoading(true)
-        const res = await fetch('http://localhost:5000/api/sharing/getallsharingideas');
+        const res = await fetch('https://blogs-sharing-ideas-api.onrender.com/api/sharing/getallsharingideas');
         const data = await res.json()
         if (data.success === false) {
           setsharingError(true);

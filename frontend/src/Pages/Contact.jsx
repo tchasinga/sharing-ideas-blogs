@@ -14,7 +14,7 @@ export default function Contact({ sharing }) {
     const fetchLandowner = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:5000/api/user/${sharing.userRef}`);
+        const res = await fetch(`https://blogs-sharing-ideas-api.onrender.com/api/user/${sharing.userRef}`);
         const data = await res.json();
         setLandowner(data);
         if (data.success === false) {

@@ -92,7 +92,7 @@ export default function Createsharingideas() {
       setLoading(true);
       setError(false);
   
-      const res = await fetch(`http://localhost:5000/api/sharing/creatignsharingideas`, {
+      const res = await fetch(`https://blogs-sharing-ideas-api.onrender.com/api/sharing/creatignsharingideas`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

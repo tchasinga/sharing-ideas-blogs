@@ -24,7 +24,7 @@ export default function Sharingdeteals() {
       try {
         setLoading(true);
         const res = await fetch(
-          `http://localhost:5000/api/sharing/getsharingideas/${params.sharingId}`
+          `https://blogs-sharing-ideas-api.onrender.com/api/sharing/getsharingideas/${params.sharingId}`
         );
         const data = await res.json();
         if (data.success === false) {

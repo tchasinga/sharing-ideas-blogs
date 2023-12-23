@@ -19,7 +19,7 @@ function Search() {
         setLoading(true);
         const searchQuery = urlParams.toString(searchTerm);
         const res = await fetch(
-          `http://localhost:5000/api/sharing/getallsharingideas?${searchQuery}`
+          `https://blogs-sharing-ideas-api.onrender.com/api/sharing/getallsharingideas?${searchQuery}`
         );
         const data = await res.json();
 

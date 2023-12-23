@@ -26,7 +26,7 @@ export default function SignIn() {
     e.preventDefault()
     try {
        dispatch(signInStart())
-       const res = await fetch('http://localhost:5000/api/auth/signin', {
+       const res = await fetch('https://blogs-sharing-ideas-api.onrender.com/api/auth/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

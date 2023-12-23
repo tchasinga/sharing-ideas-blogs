@@ -61,7 +61,7 @@ export default function UpdateProfile() {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
-      const  res = await fetch(`http://localhost:5000/api/user/update/${currentUser.user._id}`, {
+      const  res = await fetch(`https://blogs-sharing-ideas-api.onrender.com/api/user/update/${currentUser.user._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

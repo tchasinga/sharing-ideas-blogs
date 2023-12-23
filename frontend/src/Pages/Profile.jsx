@@ -21,7 +21,7 @@ const [userSharing, setUserSharings] = useState([]);
 const handlerSingout = async() => {
   try {
     dispatch(signOutUserStart());
-    const res = await fetch('http://localhost:5000/api/auth/signout')
+    const res = await fetch('https://blogs-sharing-ideas-api.onrender.com/api/auth/signout')
     const data = await res.json();
 
     if(data.success === false) {
@@ -38,7 +38,7 @@ const handlerSingout = async() => {
 // Adding delete functionality (this function are used to delete the user...)
 const handlerdeleleAccount = async() => {
   try {
-    const  res = await fetch(`http://localhost:5000/api/user/delete/${currentUser.user._id}`, {
+    const  res = await fetch(`https://blogs-sharing-ideas-api.onrender.com/api/user/delete/${currentUser.user._id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const handlerdeleleAccount = async() => {
 const handlerShowSharing = async() => {
   try {
     setshowSharingErrors(false);
-    const res = await fetch(`http://localhost:5000/api/user/getsharing/${currentUser.user._id}`);
+    const res = await fetch(`https://blogs-sharing-ideas-api.onrender.com/api/user/getsharing/${currentUser.user._id}`);
     const data = await res.json();
     if(data.success === true) {
 
@@ -81,7 +81,7 @@ const handlerShowSharing = async() => {
 // Deleting the Sharing Information
 const handlerListingDelete = async(sharingId) => {
   try {
-    const res = await fetch(`http://localhost:5000/api/sharing/deleteideas/${sharingId}`, {
+    const res = await fetch(`https://blogs-sharing-ideas-api.onrender.com/api/sharing/deleteideas/${sharingId}`, {
       method: 'DELETE',
     })
     const data = await res.json();

@@ -98,7 +98,7 @@ export default function UpdateSharing() {
         setLoading(true)
         setError(false)
      
-        const res = await fetch(`http://localhost:5000/api/sharing/updatesharingideas/${params.sharingId}`, {
+        const res = await fetch(`https://blogs-sharing-ideas-api.onrender.com/api/sharing/updatesharingideas/${params.sharingId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ export default function UpdateSharing() {
    useEffect(() => {
     const fetchingList = async () => {
         const sharingId = params.sharingId;
-        const res = await fetch(`http://localhost:5000/api/sharing/getsharingideas/${sharingId}`);
+        const res = await fetch(`https://blogs-sharing-ideas-api.onrender.com/api/sharing/getsharingideas/${sharingId}`);
         const data = await res.json();
         setFormData(data)
     };
