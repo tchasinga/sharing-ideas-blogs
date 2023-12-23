@@ -170,6 +170,12 @@
   max-width: 300px;
 }
 
+.bg-black{
+  background-color: #0000007e;
+  padding: 10px 20px;
+  width: 45%;
+  backdrop-filter: blur(10px);
+}
 
 
 
