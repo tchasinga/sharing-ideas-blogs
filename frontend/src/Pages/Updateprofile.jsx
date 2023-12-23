@@ -86,7 +86,7 @@ export default function UpdateProfile() {
 //  Always keep and pay attention to the order of the id values in the form....
   return (
     <div className="max-w-3xl mx-auto mt-20">
-      <div className="flex items-center gap-3 w-full">
+      <div className="flex flex-wrap items-center gap-3 w-full">
         <h1 className="text-2xl font-light">Hello</h1>
         <MdWavingHand className="text-2xl text-yellow-600 animate__tada animate__animated" />
         <h1 className="text-2xl font-light">{currentUser.user.username}</h1>,

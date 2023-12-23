@@ -58,7 +58,7 @@ export default function Header() {
             </Link>
 
             <Link to="/about">
-              <li className="hover:font-semibold">About</li>
+              <li className="hover:font-semibold noneget">About</li>
             </Link>
 
             <Link to="/profile">

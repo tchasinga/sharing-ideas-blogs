@@ -58,7 +58,7 @@ export default function Home() {
      )}
        {loading && <h1 className='LoadingpageContainer'><Load/></h1>}
        {sharing.length === 0 && <h1 className='LoadingpageContainer'><Messagebugs/></h1>}
-        <div className="flex flex-wrap gap-4 justify-center max-w-full myhomeget  mb-16 mx-auto">
+        <div className="flex flex-wrap gap-4 justify-center max-w-full myhomeget mx-auto">
           {sharing.map((sharinglist) => (
             <div className="" key={sharinglist._id}>     
             <SharingCard key={sharinglist._id} sharinglist={sharinglist} />

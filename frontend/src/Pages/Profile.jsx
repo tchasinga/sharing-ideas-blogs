@@ -100,8 +100,8 @@ const handlerListingDelete = async(sharingId) => {
 
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 ">
-        <div className="flex w-full p-2 gap-9">
+    <div className="max-w-4xl mx-auto mt-20 ">
+        <div className="flex flex-wrap w-full p-2 gap-9">
         <div className="flex flex-col gap-0  ">
           <div className="">
             <div className="flex flex-col">
@@ -159,7 +159,7 @@ const handlerListingDelete = async(sharingId) => {
                   </div>     
                </div>
 
-               <div className="w-full flex gap-3">
+               <div className="w-full flex flex-wrap gap-3">
                <Link to='/createSharing'>
                <div className='flex items-center justify-center cursor-pointer newpadding bg-green-300 p-3 gap-1 mt-3 rounded-2xl'>
                 <MdCreateNewFolder className='text-3xl'/>
