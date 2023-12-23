@@ -28,8 +28,8 @@ export default function Home() {
            <h3 className="text-xs text-gray-500 flex justify-start my-2 bg-black">Share your knowledge in different domain</h3>
          <div className="">
          <p className='text-xs text-white flex'>Let&apos;us thing out of way: you dont&apos;t need a fancy Bachelor&apos;s Degree to get into</p>
-           <p className='text-xs text-white flex'>Product Design. we sat down franckie to talk about gatekeeping in </p>
-           <p className='text-xs text-white flex'>the design industry and how to get started in product design.</p>
+          <p className='text-xs text-white flex'>Product Design. we sat down franckie to talk about gatekeeping in </p>
+          <p className='text-xs text-white flex'>The design industry and how to get started in product design.</p>
          </div>
         </div>
       </div>
