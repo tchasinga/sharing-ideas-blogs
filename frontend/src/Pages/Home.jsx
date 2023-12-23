@@ -1,6 +1,5 @@
 import Oneimg from '../Img/pexels-christina-morillo-1181259.jpg'
 import {useSelector} from 'react-redux';
-import SharingCard from './SharingCard';
 
 export default function Home() {
   const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
@@ -36,9 +35,7 @@ export default function Home() {
       </div>
      )}
      
-      <div className="flex flex-wrap gap-4 justify-center max-w-7xl mt-7 mx-auto">
-        <SharingCard />
-      </div>
+     
     </div>
   )
 }
