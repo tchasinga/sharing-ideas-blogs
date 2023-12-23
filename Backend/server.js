@@ -26,7 +26,7 @@ app.use((err, req, res, next) => {
 // Middlewares to allow CORS
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://blogs-sharing-ideas.onrender.com',
     credentials: true,
   })
 );
