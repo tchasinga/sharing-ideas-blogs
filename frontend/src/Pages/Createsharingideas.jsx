@@ -10,7 +10,9 @@ export default function Createsharingideas() {
   const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
+  const [filePerc, setFilePerc] = useState(0);
   const [imageUploadImageError,  setImageUploadError] = useState(false);
+  const [fileUploadError, setFileUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -63,9 +65,11 @@ export default function Createsharingideas() {
                 (snapshot) => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     console.log(`Upload is ${progress}% done`);
+                    setFilePerc(Math.round(progress));
                 },
                 (error) => {
                     reject(error);
+                    setFileUploadError(true);
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -203,6 +207,19 @@ export default function Createsharingideas() {
             <p className='text-red-700 text-xs'>{imageUploadImageError &&  imageUploadImageError}</p>
         </div>
       </form>
+     <div className="flex flex-col w-full">
+     <p className="text-sm">
+          {fileUploadError ? (
+            <span className="text-red-500">
+              Failed to upload image. Please try again. {currentUser?.user.username} (Your image must be less than 2 mb)
+            </span>
+          ) : filePerc > 0 && filePerc < 100 ? (
+            <span className="text-green-950">Uploading image...{filePerc}%</span>
+          ) : filePerc === 100 ? (
+            <span className="text-green-500">Image uploaded successfully.</span>
+          ) : null}
+        </p>
+     </div>
     </main>
   )
 }

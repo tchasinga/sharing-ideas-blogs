@@ -11,7 +11,9 @@ export default function UpdateSharing() {
   const navigate = useNavigate();
   const params = useParams();
   const [files, setFiles] = useState([]);
+  const [filePerc, setFilePerc] = useState(0);
   const [imageUploadImageError,  setImageUploadError] = useState(false);
+  const [fileUploadError, setFileUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -64,9 +66,11 @@ export default function UpdateSharing() {
                 (snapshot) => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     console.log(`Upload is ${progress}% done`);
+                    setFilePerc(Math.round(progress));
                 },
                 (error) => {
                     reject(error);
+                    setFileUploadError(true);
                 },
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -229,6 +233,20 @@ const handlerRemoveimg = (index) =>{
                    </div>
                 ))
             }
+
+    <div className="flex flex-col w-full">
+       <p className="text-sm">
+          {fileUploadError ? (
+            <span className="text-red-500">
+              Failed to upload image. Please try again. {currentUser?.user.username} (Your image must be less than 2 mb)
+            </span>
+          ) : filePerc > 0 && filePerc < 100 ? (
+            <span className="text-green-950">Uploading image...{filePerc}%</span>
+          ) : filePerc === 100 ? (
+            <span className="text-green-500">Image uploaded successfully.</span>
+          ) : null}
+        </p>
+     </div>
     </main>
   )
 }
