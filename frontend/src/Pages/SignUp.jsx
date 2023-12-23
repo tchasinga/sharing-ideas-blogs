@@ -87,7 +87,7 @@ export default function SignUp() {
             <TextField  label="set your username" required className="w-2/3" id='username' onChange={handleChange} variant='outlined' type='text'/>
             <TextField  label="set your email" required className="w-2/3" id='email' onChange={handleChange} variant='outlined' type='text'/>
             <TextField  label="set your password" required helperText="don't share your password" id='password' onChange={handleChange} className="w-2/3" variant='outlined' type='password'/>
-            <Button type="submit" variant="contained">{loading ? 'loading...' : 'Sign up'}</Button>
+            <Button type="submit" disabled={loading} variant="contained">{loading ? 'loading...' : 'Sign up'}</Button>
             </form>
             {showSuccess && <Success />} {/* Show success popup */}
              <div className="flex gap-2 mt-3 text-xs">
