@@ -56,7 +56,7 @@ export default function SignUp() {
     return (
       <div className="bg-blue-100  mainBody">
          <div className="newproductgrid max-w-7xl mx-auto rounded-3xl">
-          <div className="firstDiv p-3">
+          <div className="firstDiv p-3 noneget">
             <div className="flex items-center gap-1 pl-3">
             <TbWorldShare className="text-2xl text-white"/>
             <h2 className="text-sm text-indigo-50 font-medium">Welcom in our blogs sharing</h2>
@@ -72,7 +72,6 @@ export default function SignUp() {
           {/* Second side in downloading now  */}
            
           <div className="secondDiv w-full">
-            
             <Link to='/signin'>
             <div className="mt-5 flex justify-end pr-5">
             <Tooltip title="Click here to login now" arrow placement='left'>

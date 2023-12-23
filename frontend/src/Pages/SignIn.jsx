@@ -57,7 +57,7 @@ export default function SignIn() {
   return (
     <div className="bg-blue-100  mainBody">
        <div className="newproductgrid max-w-7xl mx-auto rounded-3xl">
-        <div className="firstDiv p-3">
+        <div className="firstDiv p-3 noneget">
           <div className="flex items-center gap-1 pl-3">
           <TbWorldShare className="text-2xl text-white"/>
           <h2 className="text-sm text-indigo-50 font-medium">Welcom in our blogs sharing</h2>
@@ -83,8 +83,8 @@ export default function SignIn() {
           </Link>
 
           <form onSubmit={handlerSubmit} className="mt-44 w-full flex flex-col  items-center gap-3">
-           <div className="flex pr-80 uppercase text-xl font-bold">
-           <h1 className="">Sing in here</h1>
+           <div className="flex ml-20 uppercase text-xl font-bold w-full">
+           <h1 className="noneget">Sing in here</h1>
            </div>
           <TextField  label="set your email" required className="w-2/3" id="email" onChange={handleChange} variant='outlined' type='email'/>
           <TextField  label="set your password" id="password" onChange={handleChange} helperText="don't share your password" className="w-2/3" variant='outlined' type='password'/>
