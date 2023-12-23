@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 export default function SharingCard({ sharinglist }) {
 
- 
-
   return (
     <div className="flex flex-col justify-center items-center maxWidth bg-gray-100 rounded-lg p-3">
     <Link to={`/sharingdeteals/${sharinglist._id}`}>
@@ -31,7 +29,7 @@ export default function SharingCard({ sharinglist }) {
 
 SharingCard.propTypes = {
   sharinglist: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
+    _id: PropTypes.string,
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     publicrole: PropTypes.string.isRequired,

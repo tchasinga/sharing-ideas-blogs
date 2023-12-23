@@ -171,10 +171,10 @@
 }
 
 .bg-black{
-  background-color: #0000007e;
+  background-color: #00000044;
   padding: 10px 20px;
   width: 45%;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(30px);
 }
 
 
