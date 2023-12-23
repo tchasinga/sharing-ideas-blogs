@@ -25,12 +25,12 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="px-32 p-2 w-full">
+    <div className="px-32 p-2 w-full fixed z-10 top-0 left-0  right-0 bg-blacker zone">
       <div className="flex justify-between items-center flex-wrap">
         <Link to="/">
           <div  className="flex items-center cursor-pointer gap-2">
             <MdScreenShare className="text-3xl" />
-            <h3 className="text-1xl font-bold cursor-pointer">Shar<span className='text-blue-400'>ing</span></h3>
+            <h3 className="text-1xl font-bold cursor-pointer noneget">Shar<span className='text-blue-400'>ing</span></h3>
           </div>
         </Link>
 
