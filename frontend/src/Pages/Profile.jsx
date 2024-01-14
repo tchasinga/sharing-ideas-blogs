@@ -13,6 +13,7 @@ export default function Profile() {
 const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
 const [showSharingiErrors, setshowSharingErrors] = useState(false);
 const [userSharing, setUserSharings] = useState([]);
+const [loadingWhilefetchingData, setLoadingWhilefetchingData] = useState(false);
 
 // const [setFormData] = useState({});
 
@@ -61,6 +62,7 @@ const handlerdeleleAccount = async() => {
 // Showing all data which was created by the specic user
 const handlerShowSharing = async() => {
   try {
+    setLoadingWhilefetchingData(true);
     setshowSharingErrors(false);
     const res = await fetch(`https://blogs-sharing-ideas-api.onrender.com/api/user/getsharing/${currentUser.user._id}`);
     const data = await res.json();
@@ -72,6 +74,7 @@ const handlerShowSharing = async() => {
     setUserSharings(data);
     setshowSharingErrors(false);
     console.log(data);
+    setLoadingWhilefetchingData(false);
     
     
   } catch (error) {
@@ -186,6 +189,12 @@ const handlerListingDelete = async(sharingId) => {
        <Link className="text-slate-700 text-sm font-medium truncate flex-1" to={`/sharingdeteals/${sharing._id}`}>
          <p className="">{sharing.publicrole}</p>
        </Link>
+           
+           { loadingWhilefetchingData && (
+              <div className="flex items-center gap-2">
+                <p className="text-green-700">Loading...</p>
+              </div> 
+           )}
 
           <div className="flex flex-col items-center">
             <button onClick={()=>handlerListingDelete(sharing._id)} className="text-red-700 uppercase">Delete</button>
