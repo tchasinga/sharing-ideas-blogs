@@ -7,12 +7,15 @@ import {signOutUserFailure, signOutUserStart, signOutUserSuccess , deleteUserSta
 import { MdCreateNewFolder } from "react-icons/md";
 import { BiShowAlt } from "react-icons/bi";
 import { useState } from 'react';
+import LoadTwo from '../Animations/LoadTwo.jsx';
 
 export default function Profile() {
   const dispatch = useDispatch();
 const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
 const [showSharingiErrors, setshowSharingErrors] = useState(false);
 const [userSharing, setUserSharings] = useState([]);
+const [loadingWhilefetchingData, setLoadingWhilefetchingData] = useState(false);
+
 // const [setFormData] = useState({});
 
 
@@ -60,6 +63,7 @@ const handlerdeleleAccount = async() => {
 // Showing all data which was created by the specic user
 const handlerShowSharing = async() => {
   try {
+    setLoadingWhilefetchingData(true);
     setshowSharingErrors(false);
     const res = await fetch(`https://blogs-sharing-ideas-api.onrender.com/api/user/getsharing/${currentUser.user._id}`);
     const data = await res.json();
@@ -71,6 +75,7 @@ const handlerShowSharing = async() => {
     setUserSharings(data);
     setshowSharingErrors(false);
     console.log(data);
+    setLoadingWhilefetchingData(false);
     
     
   } catch (error) {
@@ -159,6 +164,21 @@ const handlerListingDelete = async(sharingId) => {
                   </div>     
                </div>
 
+               {currentUser.user.admins && currentUser.user.admins && (
+                  <div className="flex flex-wrap gap-5 items-center border-b-2 pb-3">
+                    <div className="">
+                      <h1 className='text-sm font-light'>Name</h1>
+                      <h2 className='text-3xl bg-gray-200 p-2 pr-10  font-medium'>Admin I&apos;m the one </h2>
+                    </div>    
+  
+                    <div className="">
+                      <h1 className='text-sm font-light'>Email</h1>
+                      <h2 className='text-sm bg-gray-200 p-2 pr-10  font-medium'>
+                    </h2>
+                    </div>
+               </div>
+               )}
+
                <div className="w-full flex flex-wrap gap-3">
                <Link to='/createSharing'>
                <div className='flex items-center justify-center cursor-pointer newpadding bg-green-300 p-3 gap-1 mt-3 rounded-2xl'>
@@ -174,7 +194,7 @@ const handlerListingDelete = async(sharingId) => {
            </div>
         </div>
 
-        {/* get all  the user listings */}
+        {/* get all  the user sharing  */}
 
         {userSharing && userSharing.map((sharing) => {
       return (
@@ -185,7 +205,7 @@ const handlerListingDelete = async(sharingId) => {
        <Link className="text-slate-700 text-sm font-medium truncate flex-1" to={`/sharingdeteals/${sharing._id}`}>
          <p className="">{sharing.publicrole}</p>
        </Link>
-
+           
           <div className="flex flex-col items-center">
             <button onClick={()=>handlerListingDelete(sharing._id)} className="text-red-700 uppercase">Delete</button>
            <Link to={`/updating-sharing/${sharing._id}`}>
@@ -195,6 +215,14 @@ const handlerListingDelete = async(sharingId) => {
        </div>
       );
     })}
-    </div>
+
+{loadingWhilefetchingData && (
+  <div className="flex items-center flex-col gap-2 Successigner bg-red-100">
+    <LoadTwo />
+    <p className="text-slate-950 text-xs">{currentUser.user.username} wait; it will not take a long time...</p>
+  </div>
+)}
+
+  </div>
   )
-}
+  }
