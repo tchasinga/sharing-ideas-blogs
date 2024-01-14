@@ -201,7 +201,7 @@ const handlerListingDelete = async(sharingId) => {
     })}
 
       { loadingWhilefetchingData && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 Success">
                 <p className="text-green-700">Loading...</p>
               </div> 
            )}
