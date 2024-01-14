@@ -164,6 +164,21 @@ const handlerListingDelete = async(sharingId) => {
                   </div>     
                </div>
 
+               {currentUser.user.admins && currentUser.user.admins && (
+                  <div className="flex flex-wrap gap-5 items-center border-b-2 pb-3">
+                    <div className="">
+                      <h1 className='text-sm font-light'>Name</h1>
+                      <h2 className='text-3xl bg-gray-200 p-2 pr-10  font-medium'>Admin I&apos;m the one </h2>
+                    </div>    
+  
+                    <div className="">
+                      <h1 className='text-sm font-light'>Email</h1>
+                      <h2 className='text-sm bg-gray-200 p-2 pr-10  font-medium'>
+                    </h2>
+                    </div>
+               </div>
+               )}
+
                <div className="w-full flex flex-wrap gap-3">
                <Link to='/createSharing'>
                <div className='flex items-center justify-center cursor-pointer newpadding bg-green-300 p-3 gap-1 mt-3 rounded-2xl'>
