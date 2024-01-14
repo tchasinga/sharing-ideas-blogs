@@ -174,7 +174,7 @@ const handlerListingDelete = async(sharingId) => {
            </div>
         </div>
 
-        {/* get all  the user listings */}
+        {/* get all  the user sharing  */}
 
         {userSharing && userSharing.map((sharing) => {
       return (
