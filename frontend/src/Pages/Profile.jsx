@@ -201,12 +201,17 @@ const handlerListingDelete = async(sharingId) => {
       );
     })}
 
-      { loadingWhilefetchingData && (
-              <div className="flex items-center flex-col  gap-2 Successigner bg-red-100">
-                <LoadTwo />
-                <p className="text-slate-950 text-xs">{currentUser.user.username} wait it will not take long time...</p>
-              </div> 
-           )}
-    </div>
-  )
-}
+            { loadingWhilefetchingData && (
+                    <div className="flex items-center flex-col  gap-2 Successigner bg-red-100">
+                      <LoadTwo />
+                      <p className="text-slate-950 text-xs">{currentUser.user.username} wait it will not take long time...</p>
+                    </div> 
+                 )}
+                 {!loadingWhilefetchingData && (
+                  <div className="flex items-center flex-col  gap-2 Successigner bg-red-100">
+                  <p className="text-red-950 text-xs">{currentUser.user.username} you have not created any idea yet...</p>
+                </div>
+                 )}
+  </div>
+        )
+      }
