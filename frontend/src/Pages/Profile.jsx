@@ -190,12 +190,6 @@ const handlerListingDelete = async(sharingId) => {
          <p className="">{sharing.publicrole}</p>
        </Link>
            
-           { loadingWhilefetchingData && (
-              <div className="flex items-center gap-2">
-                <p className="text-green-700">Loading...</p>
-              </div> 
-           )}
-
           <div className="flex flex-col items-center">
             <button onClick={()=>handlerListingDelete(sharing._id)} className="text-red-700 uppercase">Delete</button>
            <Link to={`/updating-sharing/${sharing._id}`}>
@@ -205,6 +199,12 @@ const handlerListingDelete = async(sharingId) => {
        </div>
       );
     })}
+
+      { loadingWhilefetchingData && (
+              <div className="flex items-center gap-2">
+                <p className="text-green-700">Loading...</p>
+              </div> 
+           )}
     </div>
   )
 }
