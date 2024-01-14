@@ -208,7 +208,6 @@ const handlerListingDelete = async(sharingId) => {
   </div>
 )}
 
-
   </div>
-        )
-      }
+  )
+  }
