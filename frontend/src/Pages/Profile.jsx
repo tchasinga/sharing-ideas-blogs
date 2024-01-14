@@ -7,6 +7,7 @@ import {signOutUserFailure, signOutUserStart, signOutUserSuccess , deleteUserSta
 import { MdCreateNewFolder } from "react-icons/md";
 import { BiShowAlt } from "react-icons/bi";
 import { useState } from 'react';
+import LoadTwo from '../Animations/LoadTwo.jsx';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -201,8 +202,9 @@ const handlerListingDelete = async(sharingId) => {
     })}
 
       { loadingWhilefetchingData && (
-              <div className="flex items-center gap-2 Success">
-                <p className="text-green-700">Loading...</p>
+              <div className="flex items-center flex-col  gap-2 Successigner bg-red-100">
+                <LoadTwo />
+                <p className="text-slate-950 text-xs">{currentUser.user.username} wait it will not take long time...</p>
               </div> 
            )}
     </div>
