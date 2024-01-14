@@ -13,6 +13,7 @@ export default function Profile() {
 const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
 const [showSharingiErrors, setshowSharingErrors] = useState(false);
 const [userSharing, setUserSharings] = useState([]);
+
 // const [setFormData] = useState({});
 
 
