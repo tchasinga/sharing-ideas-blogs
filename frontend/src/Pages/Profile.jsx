@@ -16,9 +16,6 @@ const [showSharingiErrors, setshowSharingErrors] = useState(false);
 const [userSharing, setUserSharings] = useState([]);
 const [loadingWhilefetchingData, setLoadingWhilefetchingData] = useState(false);
 
-// const [setFormData] = useState({});
-
-
 
 // Adding singout functionality (this function are used to singout the user...)
 const handlerSingout = async() => {
@@ -219,7 +216,7 @@ const handlerListingDelete = async(sharingId) => {
 {loadingWhilefetchingData && (
   <div className="flex items-center flex-col gap-2 Successigner bg-red-100">
     <LoadTwo />
-    <p className="text-slate-950 text-xs">{currentUser.user.username} wait; it will not take a long time...</p>
+    <p className="text-slate-950 text-xs">{currentUser.user.username} wait it will not take a long time...</p>
   </div>
 )}
 
