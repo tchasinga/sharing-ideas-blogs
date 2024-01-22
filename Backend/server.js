@@ -35,7 +35,7 @@ app.use(
   })
 );
 
-// Connecting to MongoDB
+// Connecting to MongoDB is required 
 const urlmongoDB = process.env.MONGODB_URL;
 mongoose
   .connect(urlmongoDB, { useNewUrlParser: true, useUnifiedTopology: true })
