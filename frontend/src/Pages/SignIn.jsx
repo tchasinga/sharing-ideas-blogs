@@ -93,7 +93,7 @@ export default function SignIn() {
           </form>
           {showSuccess && <Success />} {/* Show success popup */}
         </div>
-        {error && <p className='text-red-500 text-center mt-3'></p>}
+        {error && <Errors/>}
         </div>
     </div>
   )

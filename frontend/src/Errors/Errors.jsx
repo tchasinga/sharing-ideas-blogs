@@ -4,7 +4,7 @@ import { MdCancel } from "react-icons/md";
 
 export default function Errors() {
 
-  const [cancelErrorsWindows,  setCancelErrorsWindows] = useState(false)
+  const [cancelErrorsWindows,  setCancelErrorsWindows] = useState(true)
 
   const handlerCancleScreeen = () => {
     setCancelErrorsWindows(false)
@@ -14,7 +14,7 @@ export default function Errors() {
     <div>
       {cancelErrorsWindows && (
         <div className="flex max-w-xs mx-auto items-center justify-center flex-col gap-2 Successigner bg-red-100">
-          <MdCancel  className="text-black text-xl" onClick={handlerCancleScreeen}/>
+          <MdCancel  className="text-black text-xl cursor-pointer" onClick={handlerCancleScreeen}/>
           <div className="">
             <Looser/>
           </div>
