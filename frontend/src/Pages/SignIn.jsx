@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {signInStart,singInSuccess,signInFailure} from '../redux/user/userSlice.js'
 import { useState, } from 'react';
 import Success from '../Tasks/Success.jsx'
+import Errors from "../Errors/Errors.jsx";
 
 
 
@@ -92,7 +93,7 @@ export default function SignIn() {
           </form>
           {showSuccess && <Success />} {/* Show success popup */}
         </div>
-        {error && <p className='text-red-500 text-center mt-3'></p>}
+        {error && <p className='text-red-500 text-center mt-3'>{<Errors/>}</p>}
         </div>
     </div>
   )
