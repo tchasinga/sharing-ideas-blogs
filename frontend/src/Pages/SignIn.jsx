@@ -14,7 +14,8 @@ import Errors from "../Errors/Errors.jsx";
 export default function SignIn() {
    
  const [formData, setFormData] = useState({})
- const {loading , error} = useSelector(state =>  state.user && state.user.user)
+ const {loading } = useSelector(state =>  state.user && state.user.user)
+ const [showError, setShowError] = useState(false); // New state for error popup
  const [showSuccess, setShowSuccess] = useState(false); // New state for success popup
  const dispatch = useDispatch()
  const navigate = useNavigate()
@@ -27,6 +28,7 @@ export default function SignIn() {
     e.preventDefault()
     try {
        dispatch(signInStart())
+
        const res = await fetch('https://blogs-sharing-ideas-api.onrender.com/api/auth/signin', {
         method: 'POST',
         headers: {
@@ -36,12 +38,13 @@ export default function SignIn() {
        })
        const data = await res.json()
        if(data.success === false){
-        dispatch(signInFailure(data.message || "Failed to sign in. Please try again."))
+        dispatch(signInFailure(setShowError(true)))
         return
        }
         dispatch(singInSuccess(data))
          // Show the Success component
       setShowSuccess(true);
+      setShowError(false); // Hide the Error component
 
       // Set a timeout to hide the Success component after 3 seconds
       setTimeout(() => {
@@ -50,7 +53,8 @@ export default function SignIn() {
         navigate('/');
       }, 5000);
     } catch (error) {
-      dispatch(signInFailure(error.message || "Failed to sign in. Please try again."))
+      setShowError(true); // Show the Error component
+      dispatch(signInFailure(setShowError(true)))
     }
   }
 
@@ -93,7 +97,7 @@ export default function SignIn() {
           </form>
           {showSuccess && <Success />} {/* Show success popup */}
         </div>
-        {error && <Errors/>}
+        {showError && <Errors/>}
         </div>
     </div>
   )
