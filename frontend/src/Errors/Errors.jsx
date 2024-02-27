@@ -4,7 +4,7 @@ import { MdCancel } from "react-icons/md";
 
 export default function Errors() {
 
-  const [cancelErrorsWindows,  setCancelErrorsWindows] = useState(true)
+  const [cancelErrorsWindows,  setCancelErrorsWindows] = useState(null)
 
   const handlerCancleScreeen = () => {
     setCancelErrorsWindows(false)
