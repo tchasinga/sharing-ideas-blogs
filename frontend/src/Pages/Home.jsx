@@ -46,6 +46,7 @@ export default function Home() {
             <p className='text-xs text-white flex'>Let&apos;us thing out of way: you dont&apos;t need a fancy Bachelor&apos;s Degree to get into</p>
               <p className='text-xs text-white flex'>Product Design. we sat down franckie to talk about gatekeeping in </p>
               <p className='text-xs text-white flex'>the design industry and how to get started in product design.</p>
+             <p className=""></p>
             </div>
            </div>
          </div>
