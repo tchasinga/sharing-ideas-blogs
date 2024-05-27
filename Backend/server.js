@@ -33,6 +33,8 @@ app.use(
       "*"
     ],
     credentials: true,
+    allowedHeaders: '*', // or list specific headers if needed
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD']
   })
 );
 
