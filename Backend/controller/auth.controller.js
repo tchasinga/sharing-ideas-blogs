@@ -31,6 +31,8 @@ require('dotenv').config();
 //     }
 // }
 
+// THIS NEW CODE IMPLEMENTATION HAS A FUNCTION THAT WILL SENT YOU A NEW EMAIL WHEN YOU SIGNUP TO THE APP
+
 // Create a transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
   service: 'gmail', // You can use any email service you prefer
@@ -55,11 +57,21 @@ const signup = async (req, res, next) => {
 
       // Send a welcome email
       const mailOptions = {
-          from: process.env.EMAIL_USER, // Sender address
-          to: email, // List of recipients
-          subject: 'Welcome to Our App!', // Subject line
-          text: `Hello ${username},\n\nWelcome to our application! We're excited to have you on board.\n\nBest Regards,\nThe Team`, // Plain text body
-      };
+        from: process.env.EMAIL_USER, // Sender address
+        to: email, // List of recipients
+        subject: 'Welcome to Our App!', // Subject line
+        html: `
+            <div style="font-family: Arial, sans-serif; color: #333;">
+                <h2 style="color: #4CAF50;">Welcome to Our Application, ${username}!</h2>
+                <p>We're excited to have you on board.</p>
+                <p style="margin-top: 20px;">
+                    <img src="https://via.placeholder.com/150" alt="Welcome Image" style="width: 150px; height: auto; border: none;">
+                </p>
+                <p>If you have any questions, feel free to reach out to us.</p>
+                <p>Best Regards,<br>The Team</p>
+            </div>
+        `, // HTML body
+    };
 
       transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
