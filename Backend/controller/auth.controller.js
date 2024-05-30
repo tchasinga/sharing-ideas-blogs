@@ -51,13 +51,15 @@ const signin = async (req, res, next) => {
         error.status = 401;
         return next(error);
       }
-  
-      const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+      // if all is good, user signed in successfully
+      const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
       const { password: pass, ...userDetails } = validUser._doc;
   
       res.cookie('access_token', token, { httpOnly: true, sameSite: true, secure: true }).status(200).json({
         token,
-        user: userDetails
+        user: userDetails,
+        success: true,
+        message: "User signed in successfully",
       });
     } catch (error) {
       next(error);
