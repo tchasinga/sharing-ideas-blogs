@@ -69,6 +69,7 @@ const signup = async (req, res, next) => {
                 </p>
                 <p>If you have any questions, feel free to reach out to us.</p>
                 <p>Best Regards,<br>The Team</p>
+                <p>If you have any questions, feel free to reach out to us. <br/> Tchasinga Balolebwami Jack </p>
             </div>
         `, // HTML body
     };
