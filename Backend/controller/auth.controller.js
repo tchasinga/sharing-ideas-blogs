@@ -65,7 +65,7 @@ const signup = async (req, res, next) => {
                 <h2 style="color: #4CAF50;">Welcome to Our Application, ${username}!</h2>
                 <p>We're excited to have you on board.</p>
                 <p style="margin-top: 20px;">
-                    <img src="https://via.placeholder.com/150" alt="Welcome Image" style="width: 150px; height: auto; border: none;">
+                    <img src="https://images.pexels.com/photos/3184302/pexels-photo-3184302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Welcome Image" style="width: 150px; height: auto; border: none;">
                 </p>
                 <p>If you have any questions, feel free to reach out to us.</p>
                 <p>Best Regards,<br>The Team</p>
