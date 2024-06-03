@@ -18,7 +18,7 @@ require('dotenv').config();
 //         const result = await newUser.save();
 //         res.status(201).json({
 //             success: true,
-//             message: "User created successfully",
+//             message: "User created successfully ...???",
 //             data: result,
 //         })
 //     } catch (error) {
@@ -31,7 +31,7 @@ require('dotenv').config();
 //     }
 // }
 
-// THIS NEW CODE IMPLEMENTATION HAS A FUNCTION THAT WILL SENT YOU A NEW EMAIL WHEN YOU SIGNUP TO THE APP
+// THIS FUNCTION HAS PURPOSE TO SENT AN EMAIL TO THE USER WHEN USER IS SING UP 
 
 // Create a transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
@@ -97,7 +97,7 @@ const signup = async (req, res, next) => {
 };
 
 
-// Adding a signin  for user to the web application...
+// Adding a signing  for user to the web application...
 
 const signin = async (req, res, next) => {
     const { email, password } = req.body;
