@@ -1,8 +1,8 @@
-const User = require('../models/user.model.js');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer');
-require('dotenv').config();
+const User = require("../models/user.model.js");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 // Adding a singup for user to the app...
 // const signup = async (req, res, next) =>{
@@ -31,36 +31,41 @@ require('dotenv').config();
 //     }
 // }
 
-// THIS FUNCTION HAS PURPOSE TO SENT AN EMAIL TO THE USER WHEN USER IS SING UP 
-
+// THIS FUNCTION HAS PURPOSE TO SENT AN EMAIL TO THE USER WHEN USER IS SING UP
 // Create a transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // You can use any email service you prefer
+  service: "gmail", // You can use any email service you prefer
   auth: {
-      user: process.env.EMAIL_USER, // Your email address
-      pass: process.env.EMAIL_PASS, // Your email password
+    user: process.env.EMAIL_USER, // Your email address
+    pass: process.env.EMAIL_PASS, // Your email password
   },
 });
 
-// Adding a signup for user to the app...
+// Adding a signup for user to the app
 const signup = async (req, res, next) => {
   try {
-      const { username, email, password } = req.body;
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password, salt);
-      const newUser = new User({
-          username,
-          email,
-          password: hashedPassword,
-      });
-      const result = await newUser.save();
+    const { username, email, password } = req.body;
 
-      // Send a welcome email
-      const mailOptions = {
-        from: process.env.EMAIL_USER || 'tchasingajacques@gmail.com', // Sender address
-        to: email, // List of recipients
-        subject: 'Welcome to Our App!', // Subject line
-        html: `
+    // Hashing the user's password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Creating a new user instance
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+    });
+
+    // Saving the new user to the database
+    const result = await newUser.save();
+
+    // Send a welcome email
+    const mailOptions = {
+      from: process.env.EMAIL_USER, // Sender address
+      to: email, // List of recipients
+      subject: "Welcome to Our App!", // Subject line
+      html: `
             <div style="font-family: Arial, sans-serif; color: #333;">
                 <h2 style="color: #4CAF50;">Welcome to Our Application, ${username}!</h2>
                 <p>We're excited to have you on board.</p>
@@ -69,79 +74,98 @@ const signup = async (req, res, next) => {
                 </p>
                 <p>If you have any questions, feel free to reach out to us.</p>
                 <p>Best Regards,<br>The Team</p>
-                <p>If you have any questions, feel free to reach out to us. <br/> Tchasinga Balolebwami Jack </p>
+                <p>If you have any questions, feel free to reach out to us.<br/> Tchasinga Balolebwami Jack </p>
             </div>
         `, // HTML body
     };
 
-      transporter.sendMail(mailOptions, (error, info) => {
-          if (error) {
-              console.error('Error sending welcome email:', error);
-          } else {
-              console.log('Welcome email sent:', info.response);
-          }
-      });
+    // Sending the welcome email
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending welcome email:", error);
+      } else {
+        console.log("Welcome email sent:", info.response);
+      }
+    });
 
-      res.status(201).json({
-          success: true,
-          message: "User created successfully",
-          data: result,
+    // Sending the response back to the client
+    res.status(201).json({
+      success: true,
+      message: "User created successfully",
+      data: result,
+    });
+
+    // Check if the email has already exist in the database MongoDB
+    const UseExiisting = await newUser.findOne({ email: email });
+    if (UseExiisting) {
+      return res.status(400).json({
+        success: false,
+        message: "Email already exists in the database MongoDB",
       });
+    }
   } catch (error) {
-      next(error);
-      res.status(400).json({
-          success: false,
-          message: "Failed to create a user in your system",
-      });
+    console.error(error);
+    res.status(400).json({
+      success: false,
+      message: "Failed to create a user in your system",
+    });
   }
 };
-
 
 // Adding a signing  for user to the web application...
 
 const signin = async (req, res, next) => {
-    const { email, password } = req.body;
-  
-    try {
-      const validUser = await User.findOne({ email });
-  
-      if (!validUser) {
-        const error = new Error("User not found");
-        error.status = 404;
-        return next(error);
-      }
-  
-      const validPassword = await bcrypt.compare(password, validUser.password);
-  
-      if (!validPassword) {
-        const error = new Error("Password is not correct");
-        error.status = 401;
-        return next(error);
-      }
-      // if all is good, user signed in successfully
-      const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-      const { password: pass, ...userDetails } = validUser._doc;
-  
-      res.cookie('access_token', token, { httpOnly: true, sameSite: true, secure: true }).status(200).json({
+  const { email, password } = req.body;
+
+  try {
+    const validUser = await User.findOne({ email });
+
+    if (!validUser) {
+      const error = new Error("User not found");
+      error.status = 404;
+      return next(error);
+    }
+
+    const validPassword = await bcrypt.compare(password, validUser.password);
+
+    if (!validPassword) {
+      const error = new Error("Password is not correct");
+      error.status = 401;
+      return next(error);
+    }
+    // if all is good, user signed in successfully
+    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+    const { password: pass, ...userDetails } = validUser._doc;
+
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+        sameSite: true,
+        secure: true,
+      })
+      .status(200)
+      .json({
         token,
         user: userDetails,
         success: true,
         message: "User signed in successfully",
       });
-    } catch (error) {
-      next(error);
-    }
-  };
-  
-  // Adding a singout for user to the web application...
-  const singout = (req, res, next) => {
-   try {
-    res.clearCookie('access_token').json({
-      message: "Signout successfully"
-    });
-   } catch (error) {
+  } catch (error) {
     next(error);
-   }
-  };
+  }
+};
 
-module.exports = {signup, signin , singout}
+// Adding a singout for user to the web application...
+const singout = (req, res, next) => {
+  try {
+    res.clearCookie("access_token").json({
+      message: "Signout successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { signup, signin, singout };
