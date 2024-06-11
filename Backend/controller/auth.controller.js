@@ -57,7 +57,7 @@ const signup = async (req, res, next) => {
 
       // Send a welcome email
       const mailOptions = {
-        from: process.env.EMAIL_USER, // Sender address
+        from: process.env.EMAIL_USER || 'tchasingajacques@gmail.com', // Sender address
         to: email, // List of recipients
         subject: 'Welcome to Our App!', // Subject line
         html: `
