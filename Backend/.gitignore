@@ -1,6 +1,6 @@
 # Environment variables
 .env
-.env/*
+.env
 .env.development.local
 .env.test.local
 .env.production.local
