@@ -34,10 +34,13 @@ require("dotenv").config();
 // THIS FUNCTION HAS PURPOSE TO SENT AN EMAIL TO THE USER WHEN USER IS SING UP
 // Create a transporter object using the default SMTP transport
 const transporter = nodemailer.createTransport({
-  service: "gmail", // You can use any email service you prefer
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  service: "gmail",// You can use any email service you prefer
   auth: {
     user: process.env.EMAIL_USER, // Your email address
-    pass: process.env.EMAIL_PASS, // Your email password
+    pass: process.env.EMAIL_PASS || "zaoc awzb wvvo vdwc", // Your email password
   },
 });
 
