@@ -49,6 +49,15 @@ const signup = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
 
+    // Check if the email already exists in the database MongoDB
+    const existingUser = await User.findOne({ email: email });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "Email already exists in the database MongoDB",
+      });
+    }
+
     // Hashing the user's password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -97,15 +106,6 @@ const signup = async (req, res, next) => {
       message: "User created successfully",
       data: result,
     });
-
-    // Check if the email has already exist in the database MongoDB
-    const UseExiisting = await newUser.findOne({ email: email });
-    if (UseExiisting) {
-      return res.status(400).json({
-        success: false,
-        message: "Email already exists in the database MongoDB",
-      });
-    }
   } catch (error) {
     console.error(error);
     res.status(400).json({
@@ -114,6 +114,7 @@ const signup = async (req, res, next) => {
     });
   }
 };
+
 
 // Adding a signing  for user to the web application...
 
