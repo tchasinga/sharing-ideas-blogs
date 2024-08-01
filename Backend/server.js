@@ -27,11 +27,11 @@ app.use((err, req, res, next) => {
 app.use(
   cors({
     origin: [
+      "*",
       "https://blogs-sharing-ideas.onrender.com",
       "http://localhost:5173",
       "http://localhost:3000",
       "http://localhost:8081",
-      "*"
     ],
     credentials: true,
     allowedHeaders: '*', // or list specific headers if needed
