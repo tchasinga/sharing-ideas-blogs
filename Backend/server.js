@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 const authUserRouter = require("./router/auth.route.js");
 const userRoute = require("./router/user.route.js");
 const sharingIdeasRoutes = require("./router/sharing.route.js");
@@ -39,6 +40,9 @@ app.use(
   })
 );
 
+// Serving static files from the React app's build directory
+app.use(express.static(path.join(__dirname, 'build')));
+
 // Connecting to MongoDB is required 
 const urlmongoDB = process.env.MONGODB_URL;
 mongoose
@@ -61,3 +65,8 @@ mongoose
 app.use("/api/auth", authUserRouter);
 app.use("/api/user", userRoute);
 app.use("/api/sharing", sharingIdeasRoutes);
+
+// Catch-all route to serve index.html for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
